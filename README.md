@@ -172,7 +172,7 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
 * Open /usr/hdf/current/nifi/conf/nifi.properties in your favorite editor
 * Change:
   ````
-			nifi.remote.input.socket.host=
+			nifi.remote.input.host=
 			nifi.remote.input.socket.port=
 			nifi.remote.input.secure=true
   ````
