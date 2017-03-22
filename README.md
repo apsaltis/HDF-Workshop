@@ -76,12 +76,12 @@ Credentials will be provided for these services by the instructor:
 
 - You will see a list of Hadoop components running on your node on the left side of the page
   - They should all show green (ie started) status. If not, start them by Ambari via 'Service Actions' menu for that service
-  
-#### NiFi Install 
+
+#### NiFi Install
 
 - NiFi is installed at: /usr/hdf/current/nifi
 
-  
+
 
 -----------------------------
 
@@ -285,7 +285,7 @@ You should be able to now go to your NiFi flow and see data coming in from MiNiF
 ## Kafka Basics
 In this lab we are going to explore creating, writing to and consuming Kafka topics. This will come in handy when we later integrate Kafka with NiFi and Storm.
 
-- Creating a topic
+1. Creating a topic
   - Step 1: Open an SSH connection to your EC2 Node.
   - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
@@ -306,7 +306,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
     bin/kafka-topics.sh --list --zookeeper localhost:2181
     ````
 
-- Testing Producers and Consumers
+2. Testing Producers and Consumers
   - Step 1: Open a second terminal to your EC2 node and navigate to the Kafka directory
   - In one shell window connect a consumer:
   ````
@@ -319,6 +319,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 ````
 bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic first-topic
 ````
+
 
 - Sending messages. Now that the producer is  connected  we can type messages.
   - Type a message in the producer window
@@ -334,13 +335,13 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 # Lab 5
 
 ## Integrating Kafka with NiFi
-- Step 1: Creating the Kafka topic
+1.  Step 1: Creating the Kafka topic
   - For our integration with NiFi create a Kafka topic called ````meetup-raw-rsvps````
 
 
-- Step 2: Add a PublishKafka_0_10 processor to the canvas. It is up to you if you want to remove the PutFile or just add a routing for the success relationship to Kafka
+2. Step 2: Add a PublishKafka_0_10 processor to the canvas. It is up to you if you want to remove the PutFile or just add a routing for the success relationship to Kafka
 
-- Step 3: Start the flow and using the Kafka tools verify the data is flowing all the way to Kafka.
+3. Step 3: Start the flow and using the Kafka tools verify the data is flowing all the way to Kafka.
 
 
 ------------------
