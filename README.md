@@ -145,7 +145,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
          }
       }
       ```
-  - Step 6: Add a PutFile processor to the canvas and configure it to write the data out to ```/temp/rsvp-data```
+  - Step 6: Add a PutFile processor to the canvas and configure it to write the data out to ```/tmp/rsvp-data```
 
 ##### Questions to Answer
 1. What does a full RSVP Json object look like?
