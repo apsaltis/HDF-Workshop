@@ -125,6 +125,26 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
   - Step 3. Add an EvaluateJsonPath processor and configure it as shown below:
   ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/jsonpath.png)
 
+    The properties to add are:
+    ```
+    event.name		$.event.event_name
+    
+    event.url		$.event.event_url
+    
+    group.city		$.group.group_city
+    
+    group.state         $.group.group_state
+    
+    group.country	$.group.group_country
+    
+    group.name		$.group.group_name
+    
+    venue.lat		$.venue.lat
+    
+    venue.lon		$.venue.lon
+    
+    venue.name		$.venue.venue_name
+    ```
   - Step 4: Add a SplitJson processor and configure the JsonPath Expression to be ```$.group.group_topics ```
   - Step 5: Add a ReplaceText processor and configure the Search Value to be ```([{])([\S\s]+)([}])``` and the Replacement Value to be
     ```
