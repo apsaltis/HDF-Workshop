@@ -60,7 +60,7 @@ Credentials will be provided for these services by the instructor:
     ```
  - Login to the ec2 node of the you have been assigned by replacing IP_ADDRESS_OF_EC2_NODE below with EC2 node IP Address (your instructor will provide this)
     ```
-     ssh -i  ~/.ssh/training-keypair.pem ec2-user@IP_ADDRESS_OF_EC2_NODE
+     ssh -i  ~/.ssh/hdf-workshop.pem ec2-user@IP_ADDRESS_OF_EC2_NODE
 
     ```
 
