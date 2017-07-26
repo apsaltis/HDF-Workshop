@@ -232,7 +232,7 @@ Now we should be ready to create our flow. To do this do the following:
 
       ````bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
 
-    For example:
+      For example:
 
       ````bin/config.sh transform MiNiFi_Flow.xml config.yml````
 
