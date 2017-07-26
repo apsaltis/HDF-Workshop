@@ -212,14 +212,14 @@ Now we should be ready to create our flow. To do this do the following:
 	* Add a GenerateFlowFile processor to the canvas (don't forget to configure the properties on it)
 	* Add a Remote Processor Group to the canvas
 
-          * For the URL copy and paste the URL for the NiFi UI from your browser
+           For the URL copy and paste the URL for the NiFi UI from your browser
    * Connect the GenerateFlowFile to the Remote Process Group
 
 5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
-  * Create a template for MiNiFi 
-  *   Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
-  *   Select the "Create Template" button from the toolbar
-  *   Choose a name for your template
+       * Create a template for MiNiFi 
+       * Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
+       * Select the "Create Template" button from the toolbar
+       * Choose a name for your template
 
 7. Now we need to download the template
 8. Now SCP it to your EC2 instance
