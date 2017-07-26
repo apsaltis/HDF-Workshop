@@ -207,15 +207,9 @@ Now we should be ready to create our flow. To do this do the following:
 	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/InputPort.png>)
 	Figure 3. Adding the Input Port
 
-2. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor as shown below in figure 4.
+2. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor.
 
-	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/LogAttribute.png>)
-	Figure 4. Adding the LogAttribute processor
-
-3.	Now that we have the input port and the processor to handle our data, we need to connect them. After creating the connection your data flow should look like figure 5 below.
-
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/nifi-flow.png>)
-  Figure 5. NiFi Flow
+3.	Now that we have the input port and the processor to handle our data, we need to connect them. 
 
 4.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
 	* Add a GenerateFlowFile processor to the canvas (don't forget to configure the properties on it)
