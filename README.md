@@ -2,7 +2,6 @@
 - [Lab 1](#lab-1)
   - Access cluster
 - [Lab 2](#lab-2)
-  - Review use case
   - Build a simple NiFi data flow
 - [Lab 3](#lab-3) - MiNiFi
   - Enable Site2Site in NiFi
