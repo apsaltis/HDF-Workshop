@@ -202,10 +202,7 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
 
 Now we should be ready to create our flow. To do this do the following:
 
-1.	The first thing we are going to do is setup an Input Port. This is the port that MiNiFi will be sending data to. To do this drag the Input Port icon to the canvas and call it "From MiNiFi" as show below in figure 3.
-
-	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/InputPort.png>)
-	Figure 3. Adding the Input Port
+1.	The first thing we are going to do is setup an Input Port. This is the port that MiNiFi will be sending data to. To do this drag the Input Port icon to the canvas and call it "From MiNiFi".
 
 2. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor.
 
@@ -213,44 +210,19 @@ Now we should be ready to create our flow. To do this do the following:
 
 4.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
 	* Add a GenerateFlowFile processor to the canvas (don't forget to configure the properties on it)
-	* Add a Remote Processor Group to the canvas as shown below in Figure 6
+	* Add a Remote Processor Group to the canvas
 
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/AddingRPG.png>)
+          * For the URL copy and paste the URL for the NiFi UI from your browser
+   * Connect the GenerateFlowFile to the Remote Process Group
 
-  Figure 6. Adding the Remote Processor Group
-
-   * For the URL copy and paste the URL for the NiFi UI from your browser
-   * Connect the GenerateFlowFile to the Remote Process Group as shown below in figure 7. (You may have to refresh the Remote Processor Group, before the input port will be available)
-
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/AddingGFFToRPGConnection.png>)
-
-  Figure 7. Adding GenerateFlowFile Connection to Remote Processor Group
-
-5.  Your canvas should now look similar to what is shown below in figure 8.
-
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/WholeFlow.png>)
-
-  Figure 8. Adding GenerateFlowFile Connection to Remote Processor Group
-
-6. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
-  * Create a template for MiNiFi illustrated below in figure 9.
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/CreatingTemplate.png>)
-  Figure 9. Creating a template
-
+5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
+  * Create a template for MiNiFi 
   *   Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
   *   Select the "Create Template" button from the toolbar
   *   Choose a name for your template
 
-7. We now need to save our template, as illustrated below in figure 10.
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/TemplateButton.png>)
-
-  Figure 10. Template button
-
-8. Now we need to download the template as shwon below in figure 11
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/DownloadTemplate.png>)
-
-  Figure 11. Saving a template
-
+7. Now we need to download the template
+8. Now SCP it to your EC2 instance
 9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
   * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi/minifi-toolkit-0.2.0)
   * Transform the template that we downloaded using the following command:
