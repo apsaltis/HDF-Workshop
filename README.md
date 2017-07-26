@@ -193,9 +193,8 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
   ````
   To
   ```
-   		nifi.remote.input.host=localhost
-			nifi.remote.input.socket.port=10000
-			nifi.remote.input.secure=false
+   		nifi.remote.input.socket.port=10000
+			
   ```
 * Restart NiFi via Ambari
 
