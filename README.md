@@ -202,27 +202,22 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
 
 Now we should be ready to create our flow. To do this do the following:
 
-1.	Open a browser and go to: http://\<nifi-host>:\<port>/nifi on my machine that url looks is http://127.0.0.1:8080/nifi and going to it in the browser looks like this:
-
-	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/NiFi_Clean.png>)
-	Figure 2. Empty NiFi Canvas
-
-2.	The first thing we are going to do is setup an Input Port. This is the port that MiNiFi will be sending data to. To do this drag the Input Port icon to the canvas and call it "From MiNiFi" as show below in figure 3.
+1.	The first thing we are going to do is setup an Input Port. This is the port that MiNiFi will be sending data to. To do this drag the Input Port icon to the canvas and call it "From MiNiFi" as show below in figure 3.
 
 	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/InputPort.png>)
 	Figure 3. Adding the Input Port
 
-3. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor as shown below in figure 4.
+2. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor as shown below in figure 4.
 
 	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/LogAttribute.png>)
 	Figure 4. Adding the LogAttribute processor
 
-4.	Now that we have the input port and the processor to handle our data, we need to connect them. After creating the connection your data flow should look like figure 5 below.
+3.	Now that we have the input port and the processor to handle our data, we need to connect them. After creating the connection your data flow should look like figure 5 below.
 
   ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/nifi-flow.png>)
   Figure 5. NiFi Flow
 
-5.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
+4.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
 	* Add a GenerateFlowFile processor to the canvas (don't forget to configure the properties on it)
 	* Add a Remote Processor Group to the canvas as shown below in Figure 6
 
@@ -237,13 +232,13 @@ Now we should be ready to create our flow. To do this do the following:
 
   Figure 7. Adding GenerateFlowFile Connection to Remote Processor Group
 
-6.  Your canvas should now look similar to what is shown below in figure 8.
+5.  Your canvas should now look similar to what is shown below in figure 8.
 
   ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/WholeFlow.png>)
 
   Figure 8. Adding GenerateFlowFile Connection to Remote Processor Group
 
-7. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
+6. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
   * Create a template for MiNiFi illustrated below in figure 9.
   ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/CreatingTemplate.png>)
   Figure 9. Creating a template
@@ -252,18 +247,18 @@ Now we should be ready to create our flow. To do this do the following:
   *   Select the "Create Template" button from the toolbar
   *   Choose a name for your template
 
-8. We now need to save our template, as illustrated below in figure 10.
+7. We now need to save our template, as illustrated below in figure 10.
   ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/TemplateButton.png>)
 
   Figure 10. Template button
 
-9. Now we need to download the template as shwon below in figure 11
+8. Now we need to download the template as shwon below in figure 11
   ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/DownloadTemplate.png>)
 
   Figure 11. Saving a template
 
-10.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
-  * Navigate to the minifi-toolkit directory (minifi-toolkit-0.0.1)
+9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
+  * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi/minifi-toolkit-0.2.0)
   * Transform the template that we downloaded using the following command:
 
       ````bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
@@ -272,12 +267,12 @@ Now we should be ready to create our flow. To do this do the following:
 
       ````bin/config.sh transform MiNiFi_Flow.xml config.yml````
 
-11. Next copy the ````config.yml```` to the ````minifi-0.0.1/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
+10. Next copy the ````config.yml```` to the ````minifi-0.2.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
 
-12. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
+11. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
 
   ```
-  cd <MINIFI_INSTALL_DIR>
+  cd /usr/hdf/current/minifi/minifi-0.2.0
   bin/minifi.sh start
 
   ```
