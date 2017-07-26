@@ -199,10 +199,6 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
   ```
 * Restart NiFi via Ambari
 
-Now that we have NiFi up and running and MiNiFi installed and ready to go, the next thing to do is to create our data flow. To do that we are going to first start with creating the flow in NiFi. Remember if you do not have NiFi running execute the following command:
-
-		<$NIFI_INSTALL_DIR>/bin/nifi.sh start
-
 
 Now we should be ready to create our flow. To do this do the following:
 
