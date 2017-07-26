@@ -216,10 +216,11 @@ Now we should be ready to create our flow. To do this do the following:
    * Connect the GenerateFlowFile to the Remote Process Group
 
 5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
-        * Create a template for MiNiFi 
-        * Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
-        * Select the "Create Template" button from the toolbar
-        * Choose a name for your template
+
+   * Create a template for MiNiFi 
+   * Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
+   * Select the "Create Template" button from the toolbar
+   * Choose a name for your template
 	
 
 7. Now we need to download the template
