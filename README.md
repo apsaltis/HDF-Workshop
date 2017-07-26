@@ -17,13 +17,7 @@
   - Creating the Kafka topic
   - Adding the Kafka producer processor
   - Verifying the data is flowing
-- [Lab 6](#lab-6) - Storm Basics
-  - Creating the Kafka output topic
-  - Deploying the Top N topology
-  - Verifying the data flow
-- [Lab 7](#lab-7) - Tying it all together
-  - Starting the API server
-  - Connecting to the API server
+
 
 ---------------
 
@@ -72,7 +66,7 @@ Credentials will be provided for these services by the instructor:
 
 #### Login to Ambari
 
-- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with admin/hdfworkshop
+- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with **admin/hdfworkshop**
 
 - You will see a list of Hadoop components running on your node on the left side of the page
   - They should all show green (ie started) status. If not, start them by Ambari via 'Service Actions' menu for that service
@@ -86,10 +80,6 @@ Credentials will be provided for these services by the instructor:
 -----------------------------
 
 # Lab 2
-
-### Review use case
-
-Use case: We work for a social analytics company, the first product we are working on is a Meetup Analytics dashboard. To do this we want to calculate the Top N meetups happening right now and display them on a dashboard.
 
 #### Goals:
   - Consume Meetup RSVP stream
@@ -157,7 +147,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
         	"name": "${venue.name}"
         },
         "group" : {
-        	"group_city" : "${group.city}",
+          "group_city" : "${group.city}",
           "group_country" : "${group.country}",
           "group_name" : "${group.name}",
           "group_state" : "${group.state}",
