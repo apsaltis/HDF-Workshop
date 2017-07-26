@@ -110,6 +110,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
 
   - Step 1: Add a ConnectWebSocket processor to the cavas
       - Configure the WebSocket Client Controller Service. The WebSocket URI for the meetups is: ```ws://stream.meetup.com/2/rsvps```
+      - Set WebSocket Client ID to your favorite number.
   - Step 2: Add an Update Attribute procesor
     - Configure it to have a custom property called ``` mime.type ``` with the value of ``` application/json ```
   - Step 3. Add an EvaluateJsonPath processor and configure it as shown below:
