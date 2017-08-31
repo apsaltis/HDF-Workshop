@@ -41,6 +41,7 @@ Credentials will be provided for these services by the instructor:
 - Create a new seession called `hdf-workshop` 
    - For the Host Name use: centos@IP_ADDRESS_OF_EC2_NODE
    - Click "Save" on the session page before logging in
+   
 ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/putty-session.png)
 
 
