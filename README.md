@@ -38,7 +38,9 @@ Credentials will be provided for these services by the instructor:
   - Connection > SSH > Auth > Private key for authentication > Browse... > Select hdf-workshop.ppk
 ![Image](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/putty.png)
 
-- Create a new seession called `hdf-workshop` and  sure to click "Save" on the session page before logging in
+- Create a new seession called `hdf-workshop` 
+   - For the Host Name use: centos@IP_ADDRESS_OF_EC2_NODE
+   - Click "Save" on the session page before logging in
 ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/putty-session.png)
 
 
