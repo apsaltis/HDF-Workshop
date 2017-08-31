@@ -187,12 +187,11 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
 ## Setting up the Flow for NiFi
 **NOTE:** Before starting NiFi we need to enable Site-to-Site communication. To do that  we can either make the change via Ambari or edit the config by hand. In Ambari the below property values can be found at ````http://<EC2_NODE>:8080/#/main/services/NIFI/configs```` . To make the changes by hand do the following:
 
-* Open /usr/hdf/current/nifi/conf/nifi.properties in your favorite editor
+* Open /usr/hdf/current/nifi/conf/nifi.properties in Ambari
 * Change:
   ````
-			nifi.remote.input.host=
 			nifi.remote.input.socket.port=
-			nifi.remote.input.secure=true
+
   ````
   To
   ```
