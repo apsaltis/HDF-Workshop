@@ -1,9 +1,7 @@
 # Contents
-
 - [Lab 1](#lab-1)
   - Access cluster
 - [Lab 2](#lab-2)
-  - Review use case
   - Build a simple NiFi data flow
 - [Lab 3](#lab-3) - MiNiFi
   - Enable Site2Site in NiFi
@@ -18,13 +16,7 @@
   - Creating the Kafka topic
   - Adding the Kafka producer processor
   - Verifying the data is flowing
-- [Lab 6](#lab-6) - Storm Basics
-  - Creating the Kafka output topic
-  - Deploying the Top N topology
-  - Verifying the data flow
-- [Lab 7](#lab-7) - Tying it all together
-  - Starting the API server
-  - Connecting to the API server
+
 
 ---------------
 
@@ -41,7 +33,7 @@ Credentials will be provided for these services by the instructor:
 
 ### To connect using Putty from Windows laptop
 
-- Right click to download [this ppk key](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/hdf-workshop.pem) > Save link as > save to Downloads folder
+- Right click to download [this ppk key](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/hdf-workshop.ppk) > Save link as > save to Downloads folder
 - Use putty to connect to your node using the ppk key:
   - Connection > SSH > Auth > Private key for authentication > Browse... > Select hdf-workshop.ppk
 ![Image](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/putty.png)
@@ -61,7 +53,7 @@ Credentials will be provided for these services by the instructor:
     ```
  - Login to the ec2 node of the you have been assigned by replacing IP_ADDRESS_OF_EC2_NODE below with EC2 node IP Address (your instructor will provide this)
     ```
-     ssh -i  ~/.ssh/training-keypair.pem ec2-user@IP_ADDRESS_OF_EC2_NODE
+     ssh -i  ~/.ssh/hdf-workshop.pem centos@IP_ADDRESS_OF_EC2_NODE
 
     ```
 
@@ -73,18 +65,20 @@ Credentials will be provided for these services by the instructor:
 
 #### Login to Ambari
 
-- Login to Ambari web UI by opening http://EC2_NODE_PUBLIC_IP:8080 and log in with admin/admin
+- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with **admin/hdfworkshop**
 
 - You will see a list of Hadoop components running on your node on the left side of the page
   - They should all show green (ie started) status. If not, start them by Ambari via 'Service Actions' menu for that service
 
+#### NiFi Install
+
+- NiFi is installed at: /usr/hdf/current/nifi
+
+
+
 -----------------------------
 
 # Lab 2
-
-### Review use case
-
-Use case: We work for a social analytics company, the first product we are working on is a Meetup Analytics dashboard. To do this we want to calculate the Top N meetups happening right now and display them on a dashboard.
 
 #### Goals:
   - Consume Meetup RSVP stream
@@ -115,11 +109,32 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
 
   - Step 1: Add a ConnectWebSocket processor to the cavas
       - Configure the WebSocket Client Controller Service. The WebSocket URI for the meetups is: ```ws://stream.meetup.com/2/rsvps```
+      - Set WebSocket Client ID to your favorite number.
   - Step 2: Add an Update Attribute procesor
     - Configure it to have a custom property called ``` mime.type ``` with the value of ``` application/json ```
   - Step 3. Add an EvaluateJsonPath processor and configure it as shown below:
   ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/jsonpath.png)
 
+    The properties to add are:
+    ```
+    event.name		$.event.event_name
+    
+    event.url		$.event.event_url
+    
+    group.city		$.group.group_city
+    
+    group.state         $.group.group_state
+    
+    group.country	$.group.group_country
+    
+    group.name		$.group.group_name
+    
+    venue.lat		$.venue.lat
+    
+    venue.lon		$.venue.lon
+    
+    venue.name		$.venue.venue_name
+    ```
   - Step 4: Add a SplitJson processor and configure the JsonPath Expression to be ```$.group.group_topics ```
   - Step 5: Add a ReplaceText processor and configure the Search Value to be ```([{])([\S\s]+)([}])``` and the Replacement Value to be
     ```
@@ -132,7 +147,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
         	"name": "${venue.name}"
         },
         "group" : {
-        	"group_city" : "${group.city}",
+          "group_city" : "${group.city}",
           "group_country" : "${group.country}",
           "group_name" : "${group.name}",
           "group_state" : "${group.state}",
@@ -140,7 +155,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
          }
       }
       ```
-  - Step 6: Add a PutFile processor to the canvas and configure it to write the data out to ```/temp/rsvp-data```
+  - Step 6: Add a PutFile processor to the canvas and configure it to write the data out to ```/tmp/rsvp-data```
 
 ##### Questions to Answer
 1. What does a full RSVP Json object look like?
@@ -172,101 +187,60 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
 * Open /usr/hdf/current/nifi/conf/nifi.properties in your favorite editor
 * Change:
   ````
-			nifi.remote.input.socket.host=
+			nifi.remote.input.host=
 			nifi.remote.input.socket.port=
 			nifi.remote.input.secure=true
   ````
   To
   ```
-   		nifi.remote.input.socket.host=localhost
-			nifi.remote.input.socket.port=10000
-			nifi.remote.input.secure=false
+   		nifi.remote.input.socket.port=10000
+			
   ```
 * Restart NiFi via Ambari
-
-Now that we have NiFi up and running and MiNiFi installed and ready to go, the next thing to do is to create our data flow. To do that we are going to first start with creating the flow in NiFi. Remember if you do not have NiFi running execute the following command:
-
-		<$NIFI_INSTALL_DIR>/bin/nifi.sh start
 
 
 Now we should be ready to create our flow. To do this do the following:
 
-1.	Open a browser and go to: http://\<nifi-host>:\<port>/nifi on my machine that url looks is http://127.0.0.1:8080/nifi and going to it in the browser looks like this:
+1.	The first thing we are going to do is setup an Input Port. This is the port that MiNiFi will be sending data to. To do this drag the Input Port icon to the canvas and call it "From MiNiFi".
 
-	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/NiFi_Clean.png>)
-	Figure 2. Empty NiFi Canvas
+2. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor.
 
-2.	The first thing we are going to do is setup an Input Port. This is the port that MiNiFi will be sending data to. To do this drag the Input Port icon to the canvas and call it "From MiNiFi" as show below in figure 3.
+3.	Now that we have the input port and the processor to handle our data, we need to connect them. 
 
-	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/InputPort.png>)
-	Figure 3. Adding the Input Port
-
-3. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor as shown below in figure 4.
-
-	![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/LogAttribute.png>)
-	Figure 4. Adding the LogAttribute processor
-
-4.	Now that we have the input port and the processor to handle our data, we need to connect them. After creating the connection your data flow should look like figure 5 below.
-
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/nifi-flow.png>)
-  Figure 5. NiFi Flow
-
-5.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
+4.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
 	* Add a GenerateFlowFile processor to the canvas (don't forget to configure the properties on it)
-	* Add a Remote Processor Group to the canvas as shown below in Figure 6
+	* Add a Remote Processor Group to the canvas
 
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/AddingRPG.png>)
+           For the URL copy and paste the URL for the NiFi UI from your browser
+   * Connect the GenerateFlowFile to the Remote Process Group
 
-  Figure 6. Adding the Remote Processor Group
+5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
 
-   * For the URL copy and paste the URL for the NiFi UI from your browser
-   * Connect the GenerateFlowFile to the Remote Process Group as shown below in figure 7. (You may have to refresh the Remote Processor Group, before the input port will be available)
+   * Create a template for MiNiFi 
+   * Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
+   * Select the "Create Template" button from the toolbar
+   * Choose a name for your template
+	
 
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/AddingGFFToRPGConnection.png>)
+7. Now we need to download the template
+8. Now SCP the template you downloaded to the ````/temp```` directory on your EC2 instance.
+9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
 
-  Figure 7. Adding GenerateFlowFile Connection to Remote Processor Group
-
-6.  Your canvas should now look similar to what is shown below in figure 8.
-
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/WholeFlow.png>)
-
-  Figure 8. Adding GenerateFlowFile Connection to Remote Processor Group
-
-7. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
-  * Create a template for MiNiFi illustrated below in figure 9.
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/CreatingTemplate.png>)
-  Figure 9. Creating a template
-
-  *   Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
-  *   Select the "Create Template" button from the toolbar
-  *   Choose a name for your template
-
-8. We now need to save our template, as illustrated below in figure 10.
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/TemplateButton.png>)
-
-  Figure 10. Template button
-
-9. Now we need to download the template as shwon below in figure 11
-  ![<Display Name>](<https://raw.githubusercontent.com/apsaltis/hcc-assets/master/getting-started-minifi-nifi/DownloadTemplate.png>)
-
-  Figure 11. Saving a template
-
-10.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
-  * Navigate to the minifi-toolkit directory (minifi-toolkit-0.0.1)
-  * Transform the template that we downloaded using the following command:
+    * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi/minifi-toolkit-0.2.0)
+    * Transform the template that we downloaded using the following command:
 
       ````bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
 
-    For example:
+      For example:
 
-      ````bin/config.sh transform MiNiFi_Flow.xml config.yml````
+      ````bin/config.sh transform /temp/MiNiFi_Flow.xml config.yml````
 
-11. Next copy the ````config.yml```` to the ````minifi-0.0.1/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
+10. Next copy the ````config.yml```` to the ````minifi-0.2.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
 
-12. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
+11. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
 
   ```
-  cd <MINIFI_INSTALL_DIR>
+  cd /usr/hdf/current/minifi/minifi-0.2.0
   bin/minifi.sh start
 
   ```
@@ -280,7 +254,7 @@ You should be able to now go to your NiFi flow and see data coming in from MiNiF
 ## Kafka Basics
 In this lab we are going to explore creating, writing to and consuming Kafka topics. This will come in handy when we later integrate Kafka with NiFi and Storm.
 
-- Creating a topic
+1. Creating a topic
   - Step 1: Open an SSH connection to your EC2 Node.
   - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
@@ -301,7 +275,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
     bin/kafka-topics.sh --list --zookeeper localhost:2181
     ````
 
-- Testing Producers and Consumers
+2. Testing Producers and Consumers
   - Step 1: Open a second terminal to your EC2 node and navigate to the Kafka directory
   - In one shell window connect a consumer:
   ````
@@ -314,6 +288,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 ````
 bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic first-topic
 ````
+
 
 - Sending messages. Now that the producer is  connected  we can type messages.
   - Type a message in the producer window
@@ -329,13 +304,13 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 # Lab 5
 
 ## Integrating Kafka with NiFi
-- Step 1: Creating the Kafka topic
+1.  Step 1: Creating the Kafka topic
   - For our integration with NiFi create a Kafka topic called ````meetup-raw-rsvps````
 
 
-- Step 2: Add a PublishKafka_0_10 processor to the canvas. It is up to you if you want to remove the PutFile or just add a routing for the success relationship to Kafka
+2. Step 2: Add a PublishKafka_0_10 processor to the canvas. It is up to you if you want to remove the PutFile or just add a routing for the success relationship to Kafka
 
-- Step 3: Start the flow and using the Kafka tools verify the data is flowing all the way to Kafka.
+3. Step 3: Start the flow and using the Kafka tools verify the data is flowing all the way to Kafka.
 
 
 ------------------
