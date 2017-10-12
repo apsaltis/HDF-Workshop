@@ -1,0 +1,120 @@
+{
+  "type": "record",
+  "name": "meetup_rsvp",
+  "fields": [
+    {
+      "name": "event_name",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "event_url",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "venue",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "venue",
+          "fields": [
+            {
+              "name": "lat",
+              "type": [
+                "null",
+                "float"
+              ],
+              "default": null
+            },
+            {
+              "name": "lon",
+              "type": [
+                "null",
+                "float"
+              ],
+              "default": null
+            },
+            {
+              "name": "name",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "group",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "group",
+          "fields": [
+            {
+              "name": "group_city",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "group_country",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "group_name",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "group_state",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "urlkey",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "topic_name",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}
