@@ -490,3 +490,9 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
     Spend a moment to explore and dig into any of the components. Notice at the bottom right hand corner is states "Status Active", this indicates that the application is running.
 
   - Step 10: Verify that Storm the application is running using Storm Mon. To do this go back to your Ambari Dashboard and chose the "Storm Mon link" as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/storm_mon_link.png)
+
+    That should bring up a UI that looks like the following:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/storm_mon_ui.png)
