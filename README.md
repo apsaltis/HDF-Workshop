@@ -263,7 +263,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 
 1. Creating a topic
   - Step 1: Open an SSH connection to your EC2 Node.
-  - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
+  - Step 2: Naviagte to the Kafka directory (````/usr/hdp/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
     ````
     #cd /usr/hdf/current/kafka-broker/
