@@ -402,11 +402,25 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 
   - Step 4: Add a JoltTransformJSON processor to the canvas.
   - Step 5: Add a routing for the success relationship of the UpdateAttribute processor to the JoltTransformJSON processor added in Step 5.
-  - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka processor added in Step 1 as shown below:
+  - Step 6: Configure the JoltTransformJSON processor as shown below:
 
-    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record.png)
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/jolt_transform_config.png)
 
-- Step 3: Configuring the PublishKafkaRecord processor to look like the following:
+    The JSON used in the 'Jolt Specification' property is as follows:
+
+    ``
+    {
+      "venue": {
+        "lat": ["=toDouble", 0.0],
+        "lon": ["=toDouble", 0.0]
+      }
+    }
+  ``
+  - Step 7: Add a LogAttribute processor to the canvas.
+  - Step 8: Add a routing for the failure relationship of the JoltTransformJSON processor to the LogAttribute processor added in Step 7.
+  - Step 9: Add a PublishKafkaRecord_0_10 to the canvas.
+  - Step 10: Add a routing for the success relationship of the JoltTransformJSON processor to the PublishKafka processor added in Step 9.
+  - Step 11: Configuring the PublishKafkaRecord processor to look like the following:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record_configuration.png)
 
