@@ -1,11 +1,14 @@
 # Contents
 - [Lab 1](#lab-1)
   - Access cluster
-- [Lab 2](#lab-2)
-  - Build a simple NiFi data flow
+- [Lab 2](#lab-2) - Getting started with NiFi
+  - Consuming the Meetup RSVP stream
+  - Extracting JSON elements we are interested in
+  - Splitting JSON into smaller fragments
+  - Writing JSON to File System
 - [Lab 3](#lab-3) - MiNiFi
   - Enable Site2Site in NiFi
-  - Designing MiNiFi Flow
+  - Designing the MiNiFi Flow
   - Preparing the flow
   - Running MiNiFi
 - [Lab 4](#lab-4) - Kafka Basics
@@ -16,6 +19,13 @@
   - Creating the Kafka topic
   - Adding the Kafka producer processor
   - Verifying the data is flowing
+- [Lab 6](#lab-6) - Integrating the Schema Registry
+  - Creating the Kafka topic
+  - Adding the Meetup Avro Schema
+  - Sending Avro data to Kafka
+- [Lab 7](#lab-7) - Tying it all together with SAM
+  - Creating the Streaming Application
+  - Watching the dashboard
 
 
 ---------------
@@ -38,10 +48,10 @@ Credentials will be provided for these services by the instructor:
   - Connection > SSH > Auth > Private key for authentication > Browse... > Select hdf-workshop.ppk
 ![Image](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/putty.png)
 
-- Create a new seession called `hdf-workshop` 
+- Create a new seession called `hdf-workshop`
    - For the Host Name use: centos@IP_ADDRESS_OF_EC2_NODE
    - Click "Save" on the session page before logging in
-   
+
 ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/putty-session.png)
 
 
@@ -83,16 +93,12 @@ Credentials will be provided for these services by the instructor:
 
 # Lab 2
 
-#### Goals:
-  - Consume Meetup RSVP stream
+In this lab, we will learn how to:
+  - Consume the Meetup RSVP stream
   - Extract the JSON elements we are interested in
   - Split the JSON into smaller fragments
-  - Write the JSON to Kafka
-  - Analyze the data in Storm, performing a Top N on the groups
-  - Write the data back to Kafka
-  - Consume the data via a streaming API
+  - Write the JSON to the file system
 
-We will run through a series of labs and step by step to achieve all of the above goals
 
 ### Consuming RSVP Data
 
@@ -120,22 +126,22 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
 
     The properties to add are:
     ```
-    event.name		$.event.event_name
-    
-    event.url		$.event.event_url
-    
-    group.city		$.group.group_city
-    
-    group.state         $.group.group_state
-    
+    event.name    $.event.event_name
+
+    event.url     $.event.event_url
+
+    group.city    $.group.group_city
+
+    group.state   $.group.group_state
+
     group.country	$.group.group_country
-    
+
     group.name		$.group.group_name
-    
-    venue.lat		$.venue.lat
-    
-    venue.lon		$.venue.lon
-    
+
+    venue.lat		  $.venue.lat
+
+    venue.lon     $.venue.lon
+
     venue.name		$.venue.venue_name
     ```
   - Step 4: Add a SplitJson processor and configure the JsonPath Expression to be ```$.group.group_topics ```
@@ -175,7 +181,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
 
 ## Getting started with MiNiFi ##
 
-In this lab, we will learn how configure MiNiFi to send data to NiFi:
+In this lab, we will learn how to configure MiNiFi to send data to NiFi:
 
 * Setting up the Flow for NiFi
 * Setting up the Flow for MiNiFi
@@ -185,9 +191,8 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
 
 
 ## Setting up the Flow for NiFi
-**NOTE:** Before starting NiFi we need to enable Site-to-Site communication. To do that  we can either make the change via Ambari or edit the config by hand. In Ambari the below property values can be found at ````http://<EC2_NODE>:8080/#/main/services/NIFI/configs```` . To make the changes by hand do the following:
+**NOTE:** Before starting NiFi we need to enable Site-to-Site communication. To do that we will use Ambari to update the required configuration. In Ambari the below property values can be found at ````http://<EC2_NODE>:8080/#/main/services/NIFI/configs```` .
 
-* Open /usr/hdf/current/nifi/conf/nifi.properties in Ambari
 * Change:
   ````
 			nifi.remote.input.socket.port=
@@ -196,7 +201,7 @@ In this lab, we will learn how configure MiNiFi to send data to NiFi:
   To
   ```
    		nifi.remote.input.socket.port=10000
-			
+
   ```
 * Restart NiFi via Ambari
 
@@ -207,7 +212,7 @@ Now we should be ready to create our flow. To do this do the following:
 
 2. Now that the Input Port is configured we need to have somewhere for the data to go once we receive it. In this case we will keep it very simple and just log the attributes. To do this drag the Processor icon to the canvas and choose the LogAttribute processor.
 
-3.	Now that we have the input port and the processor to handle our data, we need to connect them. 
+3.	Now that we have the input port and the processor to handle our data, we need to connect them.
 
 4.  We are now ready to build the MiNiFi side of the flow. To do this do the following:
 	* Add a GenerateFlowFile processor to the canvas (don't forget to configure the properties on it)
@@ -218,11 +223,11 @@ Now we should be ready to create our flow. To do this do the following:
 
 5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
 
-   * Create a template for MiNiFi 
+   * Create a template for MiNiFi
    * Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
    * Select the "Create Template" button from the toolbar
    * Choose a name for your template
-	
+
 
 7. Now we need to download the template
 8. Now SCP the template you downloaded to the ````/temp```` directory on your EC2 instance.
@@ -254,7 +259,7 @@ You should be able to now go to your NiFi flow and see data coming in from MiNiF
 # Lab 4
 
 ## Kafka Basics
-In this lab we are going to explore creating, writing to and consuming Kafka topics. This will come in handy when we later integrate Kafka with NiFi and Storm.
+In this lab we are going to explore creating, writing to and consuming Kafka topics. This will come in handy when we later integrate Kafka with NiFi and Streaming Analytics Manager.
 
 1. Creating a topic
   - Step 1: Open an SSH connection to your EC2 Node.
@@ -270,7 +275,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 
     ````
 
-    NOTE: Based on how Kafka reports its metrics topics with a period ('.') or underscore ('_') may collide with metric names and should be avoided. If they cannot be avoided, then you should only use one of them.
+    NOTE: Based on how Kafka reports metrics topics with a period ('.') or underscore ('_') may collide with metric names and should be avoided. If they cannot be avoided, then you should only use one of them.
 
   - Step 4:	Ensure the topic was created
     ````
@@ -306,25 +311,128 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 # Lab 5
 
 ## Integrating Kafka with NiFi
-1.  Step 1: Creating the Kafka topic
-  - For our integration with NiFi create a Kafka topic called ````meetup-raw-rsvps````
+1. Creating the topic
+  - Step 1: Open an SSH connection to your EC2 Node.
+  - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
+
+    ````
+    #cd /usr/hdf/current/kafka-broker/
+    ````
+
+  - Step 3: Create a topic using the kafka-topics.sh script
+    ````
+    bin/kafka-topics.sh --zookeeper localhost:2181 --create --partitions 1 --replication-factor 1 --topic meetup_rsvp_raw
+
+    ````
+
+    NOTE: Based on how Kafka reports metrics topics with a period ('.') or underscore ('_') may collide with metric names and should be avoided. If they cannot be avoided, then you should only use one of them.
+
+  - Step 4:	Ensure the topic was created
+    ````
+    bin/kafka-topics.sh --list --zookeeper localhost:2181
+    ````
+
+2. Integrating NiFi
+  - Step 1: Add a PublishKafka_0_10 processor to the canvas.
+  - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka processor added in Step 1 as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka.png)
+  - Step 3: Configure the topic for the PublishKafka processor
 
 
-2. Step 2: Add a PublishKafka_0_10 processor to the canvas. It is up to you if you want to remove the PutFile or just add a routing for the success relationship to Kafka
+3. Start the NiFi flow
+4. In a terminal window to your EC2 node and navigate to the Kafka directory and connect a consumer to the ````meetup_rsvp_raw```` topic:
 
-3. Step 3: Start the flow and using the Kafka tools verify the data is flowing all the way to Kafka.
+    ````
+    bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic meetup_rsvp_raw
+    ````
+
+
+5. Messages should now appear in the consumer window.
 
 
 ------------------
 
 # Lab 6
 
-## Storm Basics
-- Step 1: Creating the Kafka topic
-  - The results of our TopN computation will be written to a topic called: ````meetup-topn-rsvps````  Using the Kafka tools go ahead and create this topic.
+## Integrating the Schema Registry
+1. Creating the topic
+  - Step 1: Open an SSH connection to your EC2 Node.
+  - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
-- Step 2: Deploying the Top N topology
-- Step 3: Verifying the data flow - to do this you can use the Kafka tools or consume the data from NiFi.
+    ````
+    #cd /usr/hdp/current/kafka-broker/
+    ````
+
+  - Step 3: Create a topic using the kafka-topics.sh script
+    ````
+    bin/kafka-topics.sh --zookeeper localhost:2181 --create --partitions 1 --replication-factor 1 --topic meetup_rsvp_avro
+
+    ````
+
+    NOTE: Based on how Kafka reports metrics topics with a period ('.') or underscore ('_') may collide with metric names and should be avoided. If they cannot be avoided, then you should only use one of them.
+
+  - Step 4:	Ensure the topic was created
+    ````
+    bin/kafka-topics.sh --list --zookeeper localhost:2181
+    ````
+
+2. Adding the Schema to the Schema Registry
+  - Step 1: Open a browser and navigate to the Schema Registry UI. You can get to this from the either the ```Quick Links``` drop down in Ambari, as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/registry_quick_link.png)
+
+    or by going to ````http://<EC2_NODE>:17788````
+  - Step 2: Create Meetup RSVP Schema in the Schema Registry
+    1. Click on “+” button to add new schemas. A window called “Add New Schema” will appear.
+    2. Fill in the fields of the ````Add Schema Dialog```` as follows:
+
+        ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/add_schema_dialog.png)
+
+        For the Schema Text you can download it [here](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/meetup_rsvp.asvc) and either copy and paste it or upload the file.
+
+        Once the schema information fields have been filled and schema uploaded, click **Save**.
+
+3. We are now ready to integrate the schema with NiFi
+  - Step 1: Add a PublishKafka_0_10 processor to the canvas.
+  - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka processor added in Step 1 as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record.png)
+
+- Step 3: Configuring the PublishKafkaRecord processor to look like the following:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record_configuration.png)
+
+
+- Step 4: Configure the JsonPathReader Controller service as follows:
+
+  ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/jsonpathreader_cs.png)
+
+  The properties to add which are:
+
+  `````
+  event_name            $.event_name
+  event_url             $.event_url
+  venue.lat             $.venue.lat
+  venue.lon             $.venue.lon
+  venue.name            $.venue.name
+  group.group_city      $.group.group_city
+  group.group_country   $.group.group_country
+  group.group_state     $.group.group_state
+  group.urlkey          $.group.urlkey
+
+  `````
+
+4. Start the NiFi flow
+5. In a terminal window to your EC2 node and navigate to the Kafka directory and connect a consumer to the ````meetup_rsvp_avro```` topic:
+
+    ````
+    bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic meetup_rsvp_avro
+    ````
+
+
+5. Messages should now appear in the consumer window.
+
 
 ------------------
 

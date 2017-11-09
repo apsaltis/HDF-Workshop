@@ -1,0 +1,1645 @@
+<?xml version="1.0" ?>
+<template encoding-version="1.1">
+  <description></description>
+  <groupId>7c84501d-d10c-407c-b9f3-1d80e38fe36a</groupId>
+  <name>IoT Trucking</name>
+  <snippet>
+    <controllerServices>
+      <id>87c4f941-a0a2-37f7-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-record-serialization-services-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>
+            <name>schema-access-strategy</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>
+            <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
+            <name>schema-registry</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>
+            <name>schema-name</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>
+            <name>schema-text</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>Avro Truck Events</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>hwx-content-encoded-schema</value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>8de86e24-e65c-33d3-0000-000000000000</value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>${schema.name}</value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>${avro.schema}</value>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.avro.AvroReader</type>
+    </controllerServices>
+    <controllerServices>
+      <id>8de86e24-e65c-33d3-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-hwx-schema-registry-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>url</key>
+          <value>
+            <name>url</name>
+          </value>
+        </entry>
+        <entry>
+          <key>cache-size</key>
+          <value>
+            <name>cache-size</name>
+          </value>
+        </entry>
+        <entry>
+          <key>cache-expiration</key>
+          <value>
+            <name>cache-expiration</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>HWX Schema Registry</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>url</key>
+          <value>http://sandbox.hortonworks.com:7788/api/v1</value>
+        </entry>
+        <entry>
+          <key>cache-size</key>
+          <value>1000</value>
+        </entry>
+        <entry>
+          <key>cache-expiration</key>
+          <value>1 hour</value>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.schemaregistry.hortonworks.HortonworksSchemaRegistry</type>
+    </controllerServices>
+    <controllerServices>
+      <id>b137aeb9-80c5-3533-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-record-serialization-services-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>
+            <name>schema-access-strategy</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>
+            <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
+            <name>schema-registry</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>
+            <name>schema-name</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>
+            <name>schema-text</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Date Format</key>
+          <value>
+            <name>Date Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Time Format</key>
+          <value>
+            <name>Time Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Timestamp Format</key>
+          <value>
+            <name>Timestamp Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>CSV Format</key>
+          <value>
+            <name>CSV Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Value Separator</key>
+          <value>
+            <name>Value Separator</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Skip Header Line</key>
+          <value>
+            <name>Skip Header Line</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Quote Character</key>
+          <value>
+            <name>Quote Character</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Escape Character</key>
+          <value>
+            <name>Escape Character</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Comment Marker</key>
+          <value>
+            <name>Comment Marker</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Null String</key>
+          <value>
+            <name>Null String</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Trim Fields</key>
+          <value>
+            <name>Trim Fields</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>CSV Truck Events</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>schema-name</value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>8de86e24-e65c-33d3-0000-000000000000</value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>${schema.name}</value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>${avro.schema}</value>
+        </entry>
+        <entry>
+          <key>Date Format</key>
+        </entry>
+        <entry>
+          <key>Time Format</key>
+        </entry>
+        <entry>
+          <key>Timestamp Format</key>
+        </entry>
+        <entry>
+          <key>CSV Format</key>
+          <value>custom</value>
+        </entry>
+        <entry>
+          <key>Value Separator</key>
+          <value>|</value>
+        </entry>
+        <entry>
+          <key>Skip Header Line</key>
+          <value>false</value>
+        </entry>
+        <entry>
+          <key>Quote Character</key>
+          <value>"</value>
+        </entry>
+        <entry>
+          <key>Escape Character</key>
+          <value>\</value>
+        </entry>
+        <entry>
+          <key>Comment Marker</key>
+        </entry>
+        <entry>
+          <key>Null String</key>
+        </entry>
+        <entry>
+          <key>Trim Fields</key>
+          <value>true</value>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.csv.CSVReader</type>
+    </controllerServices>
+    <controllerServices>
+      <id>58b58972-0775-3e52-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-record-serialization-services-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>Schema Write Strategy</key>
+          <value>
+            <name>Schema Write Strategy</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>
+            <name>schema-access-strategy</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>
+            <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
+            <name>schema-registry</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>
+            <name>schema-name</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>
+            <name>schema-text</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>AvroRecordSetWriter-Read-Schema-From-HWX-Via-Schema-Name</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>Schema Write Strategy</key>
+          <value>hwx-content-encoded-schema</value>
+        </entry>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>schema-name</value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>8de86e24-e65c-33d3-0000-000000000000</value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>${schema.name}</value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>${avro.schema}</value>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.avro.AvroRecordSetWriter</type>
+    </controllerServices>
+    <controllerServices>
+      <id>659b58a5-b3f3-3058-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-record-serialization-services-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>Schema Write Strategy</key>
+          <value>
+            <name>Schema Write Strategy</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>
+            <name>schema-access-strategy</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>
+            <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
+            <name>schema-registry</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>
+            <name>schema-name</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>
+            <name>schema-text</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Date Format</key>
+          <value>
+            <name>Date Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Time Format</key>
+          <value>
+            <name>Time Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Timestamp Format</key>
+          <value>
+            <name>Timestamp Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>CSV Format</key>
+          <value>
+            <name>CSV Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Value Separator</key>
+          <value>
+            <name>Value Separator</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Include Header Line</key>
+          <value>
+            <name>Include Header Line</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Quote Character</key>
+          <value>
+            <name>Quote Character</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Escape Character</key>
+          <value>
+            <name>Escape Character</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Comment Marker</key>
+          <value>
+            <name>Comment Marker</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Null String</key>
+          <value>
+            <name>Null String</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Trim Fields</key>
+          <value>
+            <name>Trim Fields</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Quote Mode</key>
+          <value>
+            <name>Quote Mode</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Record Separator</key>
+          <value>
+            <name>Record Separator</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Include Trailing Delimiter</key>
+          <value>
+            <name>Include Trailing Delimiter</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>CSVRecordSetWriter-Read-Schema-From-HWX-Embedded</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>Schema Write Strategy</key>
+          <value>hwx-schema-ref-attributes</value>
+        </entry>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>hwx-content-encoded-schema</value>
+        </entry>
+        <entry>
+          <key>schema-registry</key>
+          <value>8de86e24-e65c-33d3-0000-000000000000</value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>${schema.name}</value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>${avro.schema}</value>
+        </entry>
+        <entry>
+          <key>Date Format</key>
+        </entry>
+        <entry>
+          <key>Time Format</key>
+        </entry>
+        <entry>
+          <key>Timestamp Format</key>
+        </entry>
+        <entry>
+          <key>CSV Format</key>
+          <value>custom</value>
+        </entry>
+        <entry>
+          <key>Value Separator</key>
+          <value>|</value>
+        </entry>
+        <entry>
+          <key>Include Header Line</key>
+          <value>false</value>
+        </entry>
+        <entry>
+          <key>Quote Character</key>
+          <value>"</value>
+        </entry>
+        <entry>
+          <key>Escape Character</key>
+          <value>\</value>
+        </entry>
+        <entry>
+          <key>Comment Marker</key>
+        </entry>
+        <entry>
+          <key>Null String</key>
+        </entry>
+        <entry>
+          <key>Trim Fields</key>
+          <value>true</value>
+        </entry>
+        <entry>
+          <key>Quote Mode</key>
+          <value>MINIMAL</value>
+        </entry>
+        <entry>
+          <key>Record Separator</key>
+          <value>\n</value>
+        </entry>
+        <entry>
+          <key>Include Trailing Delimiter</key>
+          <value>true</value>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.csv.CSVRecordSetWriter</type>
+    </controllerServices>
+    <processGroups>
+      <id>9f683370-9732-3d23-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <position>
+        <x>0.0</x>
+        <y>0.0</y>
+      </position>
+      <comments></comments>
+      <contents>
+        <connections>
+          <id>9ac6253e-1dcb-3680-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>09e1199e-c2da-36fb-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>08110a5f-247b-32ae-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>a5492827-7500-3299-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>9f926078-d017-3abb-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>9a90ae5e-4feb-3c55-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>6d6b24c0-b88d-37ae-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>9a90ae5e-4feb-3c55-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <source>
+            <groupId>b22ec63e-4891-304b-0000-000000000000</groupId>
+            <id>f23005af-53d4-3a87-0000-000000000000</id>
+            <type>OUTPUT_PORT</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>70d93b49-ee53-3ef4-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>9f926078-d017-3abb-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>09e1199e-c2da-36fb-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>7eeb3606-5d97-3191-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>9f683370-9732-3d23-0000-000000000000</groupId>
+            <id>08110a5f-247b-32ae-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <source>
+            <groupId>b22ec63e-4891-304b-0000-000000000000</groupId>
+            <id>f1451db8-28c1-3395-0000-000000000000</id>
+            <type>OUTPUT_PORT</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <labels>
+          <id>06437c10-7d39-3803-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>560.8052965336119</x>
+            <y>301.78472233006846</y>
+          </position>
+          <height>57.396385192871094</height>
+          <label>Go Get the Data</label>
+          <style>
+            <entry>
+              <key>font-size</key>
+              <value>24px</value>
+            </entry>
+          </style>
+          <width>221.0823516845703</width>
+        </labels>
+        <labels>
+          <id>36d6a12e-8414-3920-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>181.81319394354136</x>
+            <y>955.6125100090098</y>
+          </position>
+          <height>128.3921356201172</height>
+          <label>Serialize CSV into Avro by fetching  Schema 
+associated with kafka topic from the HWX Schema REgistry.
+</label>
+          <style>
+            <entry>
+              <key>font-size</key>
+              <value>24px</value>
+            </entry>
+          </style>
+          <width>673.6242065429688</width>
+        </labels>
+        <labels>
+          <id>651e5a4d-b422-3d26-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>412.0000125979997</x>
+            <y>663.1692298309256</y>
+          </position>
+          <height>44.64159393310547</height>
+          <label>Enrich the Data</label>
+          <style>
+            <entry>
+              <key>font-size</key>
+              <value>24px</value>
+            </entry>
+          </style>
+          <width>196.63572692871094</width>
+        </labels>
+        <processGroups>
+          <id>b22ec63e-4891-304b-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>892.6595677961609</x>
+            <y>274.0010076537387</y>
+          </position>
+          <comments></comments>
+          <contents>
+            <connections>
+              <id>ce83e59e-687a-3055-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+              <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+              <destination>
+                <groupId>b22ec63e-4891-304b-0000-000000000000</groupId>
+                <id>f1451db8-28c1-3395-0000-000000000000</id>
+                <type>OUTPUT_PORT</type>
+              </destination>
+              <flowFileExpiration>0 sec</flowFileExpiration>
+              <labelIndex>1</labelIndex>
+              <name></name>
+              <selectedRelationships>success</selectedRelationships>
+              <source>
+                <groupId>b22ec63e-4891-304b-0000-000000000000</groupId>
+                <id>20db9805-4f50-330d-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </source>
+              <zIndex>0</zIndex>
+            </connections>
+            <connections>
+              <id>1d66d7e2-c9b0-30b9-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+              <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+              <destination>
+                <groupId>b22ec63e-4891-304b-0000-000000000000</groupId>
+                <id>f23005af-53d4-3a87-0000-000000000000</id>
+                <type>OUTPUT_PORT</type>
+              </destination>
+              <flowFileExpiration>0 sec</flowFileExpiration>
+              <labelIndex>1</labelIndex>
+              <name></name>
+              <selectedRelationships>success</selectedRelationships>
+              <source>
+                <groupId>b22ec63e-4891-304b-0000-000000000000</groupId>
+                <id>03f28283-5c57-3ac8-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </source>
+              <zIndex>0</zIndex>
+            </connections>
+            <labels>
+              <id>c827e761-e9d4-3749-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <position>
+                <x>525.4642227588656</x>
+                <y>389.4875654679138</y>
+              </position>
+              <height>214.21615600585938</height>
+              <label>Upstream app is sending avro objects serialized 
+via HWX Schema REgistry into kafka topics
+
+Use ConsumeKafkaRecord to read Avro and convert to CSV by 
+doing the following:
+1. Get schemaId from beginning bytes of serialized AVro object
+2. Use the schemaId to lookup the schema
+3. Convert Avro object to CSV Records using the schema
+</label>
+              <style>
+                <entry>
+                  <key>font-size</key>
+                  <value>22px</value>
+                </entry>
+              </style>
+              <width>647.0797119140625</width>
+            </labels>
+            <outputPorts>
+              <id>f1451db8-28c1-3395-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <position>
+                <x>490.72727230884084</x>
+                <y>908.2175911627126</y>
+              </position>
+              <comments></comments>
+              <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+              <name>Truck Geo Events</name>
+              <state>RUNNING</state>
+              <type>OUTPUT_PORT</type>
+            </outputPorts>
+            <outputPorts>
+              <id>f23005af-53d4-3a87-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <position>
+                <x>907.7151873479033</x>
+                <y>911.8526619634938</y>
+              </position>
+              <comments></comments>
+              <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+              <name>Truck Speed Events</name>
+              <state>RUNNING</state>
+              <type>OUTPUT_PORT</type>
+            </outputPorts>
+            <processors>
+              <id>03f28283-5c57-3ac8-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <position>
+                <x>844.0467531833801</x>
+                <y>654.1467673252282</y>
+              </position>
+              <bundle>
+                <artifact>nifi-kafka-0-10-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.2.0.3.0.0.0-452</version>
+              </bundle>
+              <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                  <entry>
+                    <key>bootstrap.servers</key>
+                    <value>
+                      <name>bootstrap.servers</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>topic</key>
+                    <value>
+                      <name>topic</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>topic_type</key>
+                    <value>
+                      <name>topic_type</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>record-reader</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
+                      <name>record-reader</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>record-writer</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.serialization.RecordSetWriterFactory</identifiesControllerService>
+                      <name>record-writer</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>security.protocol</key>
+                    <value>
+                      <name>security.protocol</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.service.name</key>
+                    <value>
+                      <name>sasl.kerberos.service.name</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.principal</key>
+                    <value>
+                      <name>sasl.kerberos.principal</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.keytab</key>
+                    <value>
+                      <name>sasl.kerberos.keytab</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>ssl.context.service</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                      <name>ssl.context.service</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>group.id</key>
+                    <value>
+                      <name>group.id</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>auto.offset.reset</key>
+                    <value>
+                      <name>auto.offset.reset</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>max.poll.records</key>
+                    <value>
+                      <name>max.poll.records</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>max-uncommit-offset-wait</key>
+                    <value>
+                      <name>max-uncommit-offset-wait</name>
+                    </value>
+                  </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                  <entry>
+                    <key>bootstrap.servers</key>
+                    <value>sandbox.hortonworks.com:6667</value>
+                  </entry>
+                  <entry>
+                    <key>topic</key>
+                    <value>raw-truck_speed_events_avro</value>
+                  </entry>
+                  <entry>
+                    <key>topic_type</key>
+                    <value>names</value>
+                  </entry>
+                  <entry>
+                    <key>record-reader</key>
+                    <value>87c4f941-a0a2-37f7-0000-000000000000</value>
+                  </entry>
+                  <entry>
+                    <key>record-writer</key>
+                    <value>659b58a5-b3f3-3058-0000-000000000000</value>
+                  </entry>
+                  <entry>
+                    <key>security.protocol</key>
+                    <value>PLAINTEXT</value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.service.name</key>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.principal</key>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.keytab</key>
+                  </entry>
+                  <entry>
+                    <key>ssl.context.service</key>
+                  </entry>
+                  <entry>
+                    <key>group.id</key>
+                    <value>1</value>
+                  </entry>
+                  <entry>
+                    <key>auto.offset.reset</key>
+                    <value>latest</value>
+                  </entry>
+                  <entry>
+                    <key>max.poll.records</key>
+                    <value>10000</value>
+                  </entry>
+                  <entry>
+                    <key>max-uncommit-offset-wait</key>
+                    <value>1 secs</value>
+                  </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+              </config>
+              <name>Truck Speed Kafka Stream</name>
+              <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>parse.failure</name>
+              </relationships>
+              <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+              </relationships>
+              <style></style>
+              <type>org.apache.nifi.processors.kafka.pubsub.ConsumeKafkaRecord_0_10</type>
+            </processors>
+            <processors>
+              <id>20db9805-4f50-330d-0000-000000000000</id>
+              <parentGroupId>b22ec63e-4891-304b-0000-000000000000</parentGroupId>
+              <position>
+                <x>440.0856325779114</x>
+                <y>653.1126486728845</y>
+              </position>
+              <bundle>
+                <artifact>nifi-kafka-0-10-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.2.0.3.0.0.0-452</version>
+              </bundle>
+              <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                  <entry>
+                    <key>bootstrap.servers</key>
+                    <value>
+                      <name>bootstrap.servers</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>topic</key>
+                    <value>
+                      <name>topic</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>topic_type</key>
+                    <value>
+                      <name>topic_type</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>record-reader</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
+                      <name>record-reader</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>record-writer</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.serialization.RecordSetWriterFactory</identifiesControllerService>
+                      <name>record-writer</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>security.protocol</key>
+                    <value>
+                      <name>security.protocol</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.service.name</key>
+                    <value>
+                      <name>sasl.kerberos.service.name</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.principal</key>
+                    <value>
+                      <name>sasl.kerberos.principal</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.keytab</key>
+                    <value>
+                      <name>sasl.kerberos.keytab</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>ssl.context.service</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                      <name>ssl.context.service</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>group.id</key>
+                    <value>
+                      <name>group.id</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>auto.offset.reset</key>
+                    <value>
+                      <name>auto.offset.reset</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>max.poll.records</key>
+                    <value>
+                      <name>max.poll.records</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>max-uncommit-offset-wait</key>
+                    <value>
+                      <name>max-uncommit-offset-wait</name>
+                    </value>
+                  </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                  <entry>
+                    <key>bootstrap.servers</key>
+                    <value>sandbox.hortonworks.com:6667</value>
+                  </entry>
+                  <entry>
+                    <key>topic</key>
+                    <value>raw-truck_events_avro</value>
+                  </entry>
+                  <entry>
+                    <key>topic_type</key>
+                    <value>names</value>
+                  </entry>
+                  <entry>
+                    <key>record-reader</key>
+                    <value>87c4f941-a0a2-37f7-0000-000000000000</value>
+                  </entry>
+                  <entry>
+                    <key>record-writer</key>
+                    <value>659b58a5-b3f3-3058-0000-000000000000</value>
+                  </entry>
+                  <entry>
+                    <key>security.protocol</key>
+                    <value>PLAINTEXT</value>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.service.name</key>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.principal</key>
+                  </entry>
+                  <entry>
+                    <key>sasl.kerberos.keytab</key>
+                  </entry>
+                  <entry>
+                    <key>ssl.context.service</key>
+                  </entry>
+                  <entry>
+                    <key>group.id</key>
+                    <value>1</value>
+                  </entry>
+                  <entry>
+                    <key>auto.offset.reset</key>
+                    <value>latest</value>
+                  </entry>
+                  <entry>
+                    <key>max.poll.records</key>
+                    <value>10000</value>
+                  </entry>
+                  <entry>
+                    <key>max-uncommit-offset-wait</key>
+                    <value>1 secs</value>
+                  </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+              </config>
+              <name>Truck Geo Kafka Stream</name>
+              <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>parse.failure</name>
+              </relationships>
+              <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+              </relationships>
+              <style></style>
+              <type>org.apache.nifi.processors.kafka.pubsub.ConsumeKafkaRecord_0_10</type>
+            </processors>
+          </contents>
+          <name>Acquire Events</name>
+        </processGroups>
+        <processors>
+          <id>9a90ae5e-4feb-3c55-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>1145.8907857649033</x>
+            <y>710.8879825131966</y>
+          </position>
+          <bundle>
+            <artifact>nifi-update-attribute-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Delete Attributes Expression</key>
+                <value>
+                  <name>Delete Attributes Expression</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Store State</key>
+                <value>
+                  <name>Store State</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
+                <value>
+                  <name>Stateful Variables Initial Value</name>
+                </value>
+              </entry>
+              <entry>
+                <key>kafka.topic</key>
+                <value>
+                  <name>kafka.topic</name>
+                </value>
+              </entry>
+              <entry>
+                <key>schema.name</key>
+                <value>
+                  <name>schema.name</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Delete Attributes Expression</key>
+              </entry>
+              <entry>
+                <key>Store State</key>
+                <value>Do not store state</value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
+              </entry>
+              <entry>
+                <key>kafka.topic</key>
+                <value>truck_speed_events_avro</value>
+              </entry>
+              <entry>
+                <key>schema.name</key>
+                <value>truck_speed_events_avro</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Specify Schema and Destination</name>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
+        </processors>
+        <processors>
+          <id>9f926078-d017-3abb-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>909.1922793677413</x>
+            <y>950.0607574216406</y>
+          </position>
+          <bundle>
+            <artifact>nifi-kafka-0-10-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>bootstrap.servers</key>
+                <value>
+                  <name>bootstrap.servers</name>
+                </value>
+              </entry>
+              <entry>
+                <key>topic</key>
+                <value>
+                  <name>topic</name>
+                </value>
+              </entry>
+              <entry>
+                <key>record-reader</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
+                  <name>record-reader</name>
+                </value>
+              </entry>
+              <entry>
+                <key>record-writer</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.serialization.RecordSetWriterFactory</identifiesControllerService>
+                  <name>record-writer</name>
+                </value>
+              </entry>
+              <entry>
+                <key>security.protocol</key>
+                <value>
+                  <name>security.protocol</name>
+                </value>
+              </entry>
+              <entry>
+                <key>sasl.kerberos.service.name</key>
+                <value>
+                  <name>sasl.kerberos.service.name</name>
+                </value>
+              </entry>
+              <entry>
+                <key>sasl.kerberos.principal</key>
+                <value>
+                  <name>sasl.kerberos.principal</name>
+                </value>
+              </entry>
+              <entry>
+                <key>sasl.kerberos.keytab</key>
+                <value>
+                  <name>sasl.kerberos.keytab</name>
+                </value>
+              </entry>
+              <entry>
+                <key>ssl.context.service</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                  <name>ssl.context.service</name>
+                </value>
+              </entry>
+              <entry>
+                <key>acks</key>
+                <value>
+                  <name>acks</name>
+                </value>
+              </entry>
+              <entry>
+                <key>message-key-field</key>
+                <value>
+                  <name>message-key-field</name>
+                </value>
+              </entry>
+              <entry>
+                <key>max.request.size</key>
+                <value>
+                  <name>max.request.size</name>
+                </value>
+              </entry>
+              <entry>
+                <key>ack.wait.time</key>
+                <value>
+                  <name>ack.wait.time</name>
+                </value>
+              </entry>
+              <entry>
+                <key>max.block.ms</key>
+                <value>
+                  <name>max.block.ms</name>
+                </value>
+              </entry>
+              <entry>
+                <key>partitioner.class</key>
+                <value>
+                  <name>partitioner.class</name>
+                </value>
+              </entry>
+              <entry>
+                <key>compression.type</key>
+                <value>
+                  <name>compression.type</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>bootstrap.servers</key>
+                <value>sandbox.hortonworks.com:6667</value>
+              </entry>
+              <entry>
+                <key>topic</key>
+                <value>${kafka.topic}</value>
+              </entry>
+              <entry>
+                <key>record-reader</key>
+                <value>b137aeb9-80c5-3533-0000-000000000000</value>
+              </entry>
+              <entry>
+                <key>record-writer</key>
+                <value>58b58972-0775-3e52-0000-000000000000</value>
+              </entry>
+              <entry>
+                <key>security.protocol</key>
+                <value>PLAINTEXT</value>
+              </entry>
+              <entry>
+                <key>sasl.kerberos.service.name</key>
+              </entry>
+              <entry>
+                <key>sasl.kerberos.principal</key>
+              </entry>
+              <entry>
+                <key>sasl.kerberos.keytab</key>
+              </entry>
+              <entry>
+                <key>ssl.context.service</key>
+              </entry>
+              <entry>
+                <key>acks</key>
+                <value>0</value>
+              </entry>
+              <entry>
+                <key>message-key-field</key>
+              </entry>
+              <entry>
+                <key>max.request.size</key>
+                <value>1 MB</value>
+              </entry>
+              <entry>
+                <key>ack.wait.time</key>
+                <value>5 secs</value>
+              </entry>
+              <entry>
+                <key>max.block.ms</key>
+                <value>5 sec</value>
+              </entry>
+              <entry>
+                <key>partitioner.class</key>
+                <value>org.apache.kafka.clients.producer.internals.DefaultPartitioner</value>
+              </entry>
+              <entry>
+                <key>compression.type</key>
+                <value>none</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Publish Events to Truck Stream Topics</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_0_10</type>
+        </processors>
+        <processors>
+          <id>08110a5f-247b-32ae-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>665.3000934047266</x>
+            <y>517.9509798486299</y>
+          </position>
+          <bundle>
+            <artifact>nifi-scripting-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Script Engine</key>
+                <value>
+                  <name>Script Engine</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Script File</key>
+                <value>
+                  <name>Script File</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Script Body</key>
+                <value>
+                  <name>Script Body</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Module Directory</key>
+                <value>
+                  <name>Module Directory</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Script Engine</key>
+                <value>Groovy</value>
+              </entry>
+              <entry>
+                <key>Script File</key>
+              </entry>
+              <entry>
+                <key>Script Body</key>
+                <value>import java.nio.charset.StandardCharsets
+
+
+def flowFile = session.get()
+if(!flowFile) return
+
+lat =  flowFile.getAttribute('latitudeForGeoCodeEnrichment')
+lng =  flowFile.getAttribute('longitudeForGeoCodeEnrichment')
+
+
+flowFile = session.write(flowFile, {inputStream, outputStream -&gt;
+   inputStream.eachLine { line -&gt;
+      fmt_addr = "2106 Morton Ave, Des Moines, IA 50317, USA\n"
+      outputStream.write("$line$fmt_addr".toString().getBytes(StandardCharsets.UTF_8))
+   }
+} as StreamCallback)
+
+session.transfer(flowFile, REL_SUCCESS)</value>
+              </entry>
+              <entry>
+                <key>Module Directory</key>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>GeoCode Enrichment</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.script.ExecuteScript</type>
+        </processors>
+        <processors>
+          <id>09e1199e-c2da-36fb-0000-000000000000</id>
+          <parentGroupId>9f683370-9732-3d23-0000-000000000000</parentGroupId>
+          <position>
+            <x>665.8958818317703</x>
+            <y>722.3622010260376</y>
+          </position>
+          <bundle>
+            <artifact>nifi-update-attribute-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Delete Attributes Expression</key>
+                <value>
+                  <name>Delete Attributes Expression</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Store State</key>
+                <value>
+                  <name>Store State</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
+                <value>
+                  <name>Stateful Variables Initial Value</name>
+                </value>
+              </entry>
+              <entry>
+                <key>kafka.topic</key>
+                <value>
+                  <name>kafka.topic</name>
+                </value>
+              </entry>
+              <entry>
+                <key>schema.name</key>
+                <value>
+                  <name>schema.name</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Delete Attributes Expression</key>
+              </entry>
+              <entry>
+                <key>Store State</key>
+                <value>Do not store state</value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
+              </entry>
+              <entry>
+                <key>kafka.topic</key>
+                <value>truck_events_avro</value>
+              </entry>
+              <entry>
+                <key>schema.name</key>
+                <value>truck_events_avro</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Specify Schema and Destination</name>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
+        </processors>
+      </contents>
+      <name>Use Case 1</name>
+    </processGroups>
+  </snippet>
+  <timestamp>11/09/2017 04:00:10 UTC</timestamp>
+</template>

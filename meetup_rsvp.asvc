@@ -4,117 +4,78 @@
   "fields": [
     {
       "name": "event_name",
-      "type": [
-        "null",
-        "string"
-      ],
-      "default": null
+      "type": "string",      
+      "default": "no_name"
     },
     {
       "name": "event_url",
-      "type": [
-        "null",
-        "string"
-      ],
-      "default": null
+      "type": "string",
+      "default": "no_url"
     },
     {
       "name": "venue",
-      "type": [
-        "null",
+      "type": 
         {
           "type": "record",
           "name": "venue",
           "fields": [
             {
               "name": "lat",
-              "type": [
-                "null",
-                "float"
-              ],
-              "default": null
+              "type": "float",
+              "default": 0.0
             },
             {
               "name": "lon",
-              "type": [
-                "null",
-                "float"
-              ],
-              "default": null
+              "type": "float",
+              "default": 0.0
             },
             {
               "name": "name",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_venue_name"
             }
           ]
-        }
-      ],
-      "default": null
+        }      
     },
     {
       "name": "group",
-      "type": [
-        "null",
+      "type": 
         {
           "type": "record",
           "name": "group",
           "fields": [
             {
               "name": "group_city",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_group_city"
             },
             {
               "name": "group_country",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_group_country"
             },
             {
               "name": "group_name",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_group_name"
             },
             {
               "name": "group_state",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_group_state"
             },
             {
               "name": "urlkey",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_group_urlkey"
             },
             {
               "name": "topic_name",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
+              "type": "string",
+              "default": "no_group_topic_name"
             }
           ]
-        }
-      ],
-      "default": null
+        }      
     }
   ]
 }

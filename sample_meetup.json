@@ -1,0 +1,17 @@
+{
+  "event_name" : "Bei kühlen/warmen Getränken den Tag ausklingen lassen",
+  "event_url" : "https://www.meetup.com/echtes-Start-Up-werden/events/243900959/",
+  "venue" : {
+    "lat" : 0.0,
+    "lon" : 0.0,
+    "name" : ""
+  },
+  "group" : {
+    "group_city" : "Bremen",
+    "group_country" : "de",
+    "group_name" : "Wie man ein echtes Start-Up wird",
+    "group_state" : "",
+    "urlkey" : "newtech",
+    "topic_name" : "New Technology"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "type": "record",
+  "name": "meetup_rsvp",
+  "fields": [
+    {
+      "name": "event_name",
+      "type": "string",      
+      "default": "no_name"
+    },
+    {
+      "name": "event_url",
+      "type": "string",
+      "default": "no_url"
+    },
+    
+            {
+              "name": "venue_lat",
+              "type": "float",
+              "default": 0.0
+            },
+            {
+              "name": "venue_lon",
+              "type": "float",
+              "default": 0.0
+            },
+            {
+              "name": "venue_name",
+              "type": "string",
+              "default": "no_venue_name"
+            },    
+            {
+              "name": "group_city",
+              "type": "string",
+              "default": "no_group_city"
+            },
+            {
+              "name": "group_country",
+              "type": "string",
+              "default": "no_group_country"
+            },
+            {
+              "name": "group_name",
+              "type": "string",
+              "default": "no_group_name"
+            },
+            {
+              "name": "group_state",
+              "type": "string",
+              "default": "no_group_state"
+            },
+            {
+              "name": "urlkey",
+              "type": "string",
+              "default": "no_group_urlkey"
+            },
+            {
+              "name": "topic_name",
+              "type": "string",
+              "default": "no_group_topic_name"
+            }
+    
+  ]
+}
