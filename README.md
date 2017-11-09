@@ -425,24 +425,11 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record_configuration.png)
 
 
-  - Step 12: When you configure the JsonPathReader and AvroRecordSetWriter, you will first need to configure a schema registry controller service. The schema registry controller service we are going to use is the 'HWX Schema Registry', it should be configured as shown below:
+  - Step 12: When you configure the JsonTreeReader and AvroRecordSetWriter, you will first need to configure a schema registry controller service. The schema registry controller service we are going to use is the 'HWX Schema Registry', it should be configured as shown below:
 
-  ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/jsonpathreader_cs.png)
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/hwx_schema_registry_config.png)
 
-  The properties to add which are:
-
-  `````
-  event_name            $.event_name
-  event_url             $.event_url
-  venue.lat             $.venue.lat
-  venue.lon             $.venue.lon
-  venue.name            $.venue.name
-  group.group_city      $.group.group_city
-  group.group_country   $.group.group_country
-  group.group_state     $.group.group_state
-  group.urlkey          $.group.urlkey
-
-  `````
+  - Step 13: Configure the JsonTreeReader to look like the following:
 
 4. Start the NiFi flow
 5. In a terminal window to your EC2 node and navigate to the Kafka directory and connect a consumer to the ````meetup_rsvp_avro```` topic:
