@@ -266,7 +266,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
   - Step 2: Naviagte to the Kafka directory (````/usr/hdp/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
     ````
-    #cd /usr/hdf/current/kafka-broker/
+    #cd /usr/hdp/current/kafka-broker/
     ````
 
   - Step 3: Create a topic using the kafka-topics.sh script
@@ -293,7 +293,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 
   - In the second shell window connect a producer:
 ````
-bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic first-topic
+bin/kafka-console-producer.sh --broker-list sandbox.hortonworks.com:6667 --topic first-topic
 ````
 
 
