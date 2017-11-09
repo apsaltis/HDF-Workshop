@@ -440,7 +440,7 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 
     After following the above steps this section of your flow should look like the following:
 
-    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/avro_recordset_writer.png)
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/update_jolt_kafka_section.png)
 
 
 4. Start the NiFi flow
@@ -459,5 +459,17 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 # Lab 7
 
 ## Tying it all together
+For this lab we are going to break from the Meetup RSVP data and use a fictious IoT Trucking application.
+
+  - Step 1: SSH to your EC2 instance
+  - Step 2: We are now going to get a data loader running:
+
+    ````
+    cd /root/Data-Loader
+    nohup java -cp /root/Data-Loader/stream-simulator-jar-with-dependencies.jar  hortonworks.hdp.refapp.trucking.simulator.SimulationRegistrySerializerRunnerApp 20000 hortonworks.hdp.refapp.trucking.simulator.impl.domain.transport.Truck  hortonworks.hdp.refapp.trucking.simulator.impl.collectors.KafkaEventSerializedWithRegistryCollector 1 /root/Data-Loader/routes/midwest/ 10000 sandbox.hortonworks.com:6667 http://sandbox.hortonworks.com:7788/api/v1 ALL_STREAMS NONSECURE &
+    ````
+  - Step 3: Now that the data is flowing, instantiate the 'IoT Trucking' NiFi template.
+  - Step 4: Inspect the flow that is created and ensure there are no errors, if there are go ahead and correct those.
+  - Step 5: Start this section of the NiFi flow.
   - Starting the API server
   - Connecting to the API server
