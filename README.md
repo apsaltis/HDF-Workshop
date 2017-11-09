@@ -471,5 +471,11 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
   - Step 3: Now that the data is flowing, instantiate the 'IoT Trucking' NiFi template.
   - Step 4: Inspect the flow that is created and ensure there are no errors, if there are go ahead and correct those.
   - Step 5: Start this section of the NiFi flow.
-  - Starting the API server
+  - Step 6: Go to your Ambari dashboard and navigate to the SAM UI, by selecting the following URL:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/SAM_URL_Link.png)
+
+  - Step 7: You should now see the SAM UI that looks like the following:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/sam_default.png)
   - Connecting to the API server
