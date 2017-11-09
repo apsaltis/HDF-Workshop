@@ -394,6 +394,7 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
         Once the schema information fields have been filled and schema uploaded, click **Save**.
 
 3. We are now ready to integrate the schema with NiFi
+  - Step 0: Remove the PutFile and PublishKafka_0_10 processors from the canvas, we will not need them for this section.
   - Step 1: Add a UpdateAttribute processor to the canvas.
   - Step 2: Add a routing for the success relationship of the ReplaceText processor to the UpdateAttrbute processor added in Step 1.
   - Step 3: Configure the UpdateAttribute processor as shown below:
@@ -432,6 +433,15 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
   - Step 13: Configure the JsonTreeReader as shown below:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/json_tree_reader_config.png)
+
+  - Step 14: Configure the AvroRecordSetWriter as shown below:
+
+      ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/avro_recordset_writer.png)
+
+    After following the above steps this section of your flow should look like the following:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/avro_recordset_writer.png)
+
 
 4. Start the NiFi flow
 5. In a terminal window to your EC2 node and navigate to the Kafka directory and connect a consumer to the ````meetup_rsvp_avro```` topic:
