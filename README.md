@@ -497,5 +497,6 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/storm_mon_ui.png)
 
-    - Step 11: We are now ready to explore Superset, to do this go back to the Ambari dashboard and from the Drui service chose the "Quick Link" to "Superset" as shown below:
-  - 
+  - Step 11: We are now ready to explore Superset, to do this go back to the Ambari dashboard and from the Drui service chose the "Quick Link" to "Superset" as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/superset_link.png)
