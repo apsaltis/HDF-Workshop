@@ -429,7 +429,9 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/hwx_schema_registry_config.png)
 
-  - Step 13: Configure the JsonTreeReader to look like the following:
+  - Step 13: Configure the JsonTreeReader as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/json_tree_reader_config.png)
 
 4. Start the NiFi flow
 5. In a terminal window to your EC2 node and navigate to the Kafka directory and connect a consumer to the ````meetup_rsvp_avro```` topic:
