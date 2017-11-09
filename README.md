@@ -78,7 +78,7 @@ Credentials will be provided for these services by the instructor:
 
 #### Login to Ambari
 
-- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with **admin/hdfworkshop**
+- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with **admin/admin**
 
 - You will see a list of Hadoop components running on your node on the left side of the page
   - They should all show green (ie started) status. If not, start them by Ambari via 'Service Actions' menu for that service
