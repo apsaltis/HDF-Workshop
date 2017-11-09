@@ -478,4 +478,9 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
   - Step 7: You should now see the SAM UI that looks like the following:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/sam_default.png)
-  - Connecting to the API server
+
+  - Step 8: To inspect the application, click the icon in the top right hadn corner of the applicaiton and chose 'Edit', as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/sam_app_edit.png)
+
+  -
