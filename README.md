@@ -394,7 +394,14 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
         Once the schema information fields have been filled and schema uploaded, click **Save**.
 
 3. We are now ready to integrate the schema with NiFi
-  - Step 1: Add a PublishKafka_0_10 processor to the canvas.
+  - Step 1: Add a UpdateAttribute processor to the canvas.
+  - Step 2: Add a routing for the success relationship of the ReplaceText processor to the UpdateAttrbute processor added in Step 1.
+  - Step 3: Configure the UpdateAttribute processor as shown below:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/update_attribute_schema_name.png)
+
+  - Step 4: Add a JoltTransformJSON processor to the canvas.
+  - Step 5: Add a routing for the success relationship of the UpdateAttribute processor to the JoltTransformJSON processor added in Step 5.
   - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka processor added in Step 1 as shown below:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record.png)
