@@ -313,10 +313,10 @@ bin/kafka-console-producer.sh --broker-list sandbox.hortonworks.com:6667 --topic
 ## Integrating Kafka with NiFi
 1. Creating the topic
   - Step 1: Open an SSH connection to your EC2 Node.
-  - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
+  - Step 2: Naviagte to the Kafka directory (````/usr/hdp/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
     ````
-    #cd /usr/hdf/current/kafka-broker/
+    #cd /usr/hdp/current/kafka-broker/
     ````
 
   - Step 3: Create a topic using the kafka-topics.sh script
