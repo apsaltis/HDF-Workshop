@@ -500,3 +500,11 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
   - Step 11: We are now ready to explore Superset, to do this go back to the Ambari dashboard and from the Drui service chose the "Quick Link" to "Superset" as shown below:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/superset_link.png)
+
+  - Step 12: Exploring Superset -- following the link in Step 11 should take you to a UI that looks like the following:
+
+    ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/superset_welcome.png)
+
+  **NOTE: If you are prompted for a password use admin/admin**
+
+    Spend some time exploring the dashboard and the datasources.
