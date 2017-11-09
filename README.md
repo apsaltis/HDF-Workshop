@@ -420,12 +420,12 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
   - Step 8: Add a routing for the failure relationship of the JoltTransformJSON processor to the LogAttribute processor added in Step 7.
   - Step 9: Add a PublishKafkaRecord_0_10 to the canvas.
   - Step 10: Add a routing for the success relationship of the JoltTransformJSON processor to the PublishKafka processor added in Step 9.
-  - Step 11: Configuring the PublishKafkaRecord processor to look like the following:
+  - Step 11: Configure the PublishKafkaRecord processor to look like the following:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record_configuration.png)
 
 
-- Step 4: Configure the JsonPathReader Controller service as follows:
+  - Step 12: When you configure the JsonPathReader and AvroRecordSetWriter, you will first need to configure a schema registry controller service. The schema registry controller service we are going to use is the 'HWX Schema Registry', it should be configured as shown below:
 
   ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/jsonpathreader_cs.png)
 
