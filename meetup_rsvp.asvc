@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "meetup_rsvp",
+  "name": "meetup_rsvp_avro",
   "fields": [
     {
       "name": "event_name",
