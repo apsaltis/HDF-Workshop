@@ -21,9 +21,9 @@
           </value>
         </entry>
         <entry>
-          <key>schema-access-strategy</key>
+          <key>schema-name</key>
           <value>
-            <name>schema-access-strategy</name>
+            <name>schema-name</name>
           </value>
         </entry>
         <entry>
@@ -34,9 +34,9 @@
           </value>
         </entry>
         <entry>
-          <key>schema-name</key>
+          <key>schema-access-strategy</key>
           <value>
-            <name>schema-name</name>
+            <name>schema-access-strategy</name>
           </value>
         </entry>
         <entry>
@@ -54,16 +54,16 @@
           <value>hwx-content-encoded-schema</value>
         </entry>
         <entry>
-          <key>schema-access-strategy</key>
-          <value>schema-name</value>
+          <key>schema-name</key>
+          <value>${schema.name}</value>
         </entry>
         <entry>
           <key>schema-registry</key>
           <value>8de86e24-e65c-33d3-0000-000000000000</value>
         </entry>
         <entry>
-          <key>schema-name</key>
-          <value>${schema.name}</value>
+          <key>schema-access-strategy</key>
+          <value>schema-name</value>
         </entry>
         <entry>
           <key>schema-text</key>
@@ -84,9 +84,9 @@
       <comments></comments>
       <descriptors>
         <entry>
-          <key>url</key>
+          <key>cache-expiration</key>
           <value>
-            <name>url</name>
+            <name>cache-expiration</name>
           </value>
         </entry>
         <entry>
@@ -96,9 +96,9 @@
           </value>
         </entry>
         <entry>
-          <key>cache-expiration</key>
+          <key>url</key>
           <value>
-            <name>cache-expiration</name>
+            <name>url</name>
           </value>
         </entry>
       </descriptors>
@@ -106,16 +106,16 @@
       <persistsState>false</persistsState>
       <properties>
         <entry>
-          <key>url</key>
-          <value>http://sandbox.hortonworks.com:7788/api/v1</value>
+          <key>cache-expiration</key>
+          <value>1 hour</value>
         </entry>
         <entry>
           <key>cache-size</key>
           <value>1000</value>
         </entry>
         <entry>
-          <key>cache-expiration</key>
-          <value>1 hour</value>
+          <key>url</key>
+          <value>http://sandbox.hortonworks.com:7788/api/v1</value>
         </entry>
       </properties>
       <state>ENABLED</state>
@@ -132,9 +132,21 @@
       <comments></comments>
       <descriptors>
         <entry>
-          <key>schema-access-strategy</key>
+          <key>Timestamp Format</key>
           <value>
-            <name>schema-access-strategy</name>
+            <name>Timestamp Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Date Format</key>
+          <value>
+            <name>Date Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-name</key>
+          <value>
+            <name>schema-name</name>
           </value>
         </entry>
         <entry>
@@ -145,9 +157,15 @@
           </value>
         </entry>
         <entry>
-          <key>schema-name</key>
+          <key>Time Format</key>
           <value>
-            <name>schema-name</name>
+            <name>Time Format</name>
+          </value>
+        </entry>
+        <entry>
+          <key>schema-access-strategy</key>
+          <value>
+            <name>schema-access-strategy</name>
           </value>
         </entry>
         <entry>
@@ -156,52 +174,34 @@
             <name>schema-text</name>
           </value>
         </entry>
-        <entry>
-          <key>Date Format</key>
-          <value>
-            <name>Date Format</name>
-          </value>
-        </entry>
-        <entry>
-          <key>Time Format</key>
-          <value>
-            <name>Time Format</name>
-          </value>
-        </entry>
-        <entry>
-          <key>Timestamp Format</key>
-          <value>
-            <name>Timestamp Format</name>
-          </value>
-        </entry>
       </descriptors>
       <name>JsonTreeReader</name>
       <persistsState>false</persistsState>
       <properties>
         <entry>
-          <key>schema-access-strategy</key>
-          <value>schema-name</value>
+          <key>Timestamp Format</key>
         </entry>
         <entry>
-          <key>schema-registry</key>
-          <value>8de86e24-e65c-33d3-0000-000000000000</value>
+          <key>Date Format</key>
         </entry>
         <entry>
           <key>schema-name</key>
           <value>${schema.name}</value>
         </entry>
         <entry>
-          <key>schema-text</key>
-          <value>${avro.schema}</value>
-        </entry>
-        <entry>
-          <key>Date Format</key>
+          <key>schema-registry</key>
+          <value>8de86e24-e65c-33d3-0000-000000000000</value>
         </entry>
         <entry>
           <key>Time Format</key>
         </entry>
         <entry>
-          <key>Timestamp Format</key>
+          <key>schema-access-strategy</key>
+          <value>schema-name</value>
+        </entry>
+        <entry>
+          <key>schema-text</key>
+          <value>${avro.schema}</value>
         </entry>
       </properties>
       <state>ENABLED</state>
@@ -218,18 +218,6 @@
       <comments></comments>
       <descriptors>
         <entry>
-          <key>input-buffer-size</key>
-          <value>
-            <name>input-buffer-size</name>
-          </value>
-        </entry>
-        <entry>
-          <key>max-text-message-size</key>
-          <value>
-            <name>max-text-message-size</name>
-          </value>
-        </entry>
-        <entry>
           <key>max-binary-message-size</key>
           <value>
             <name>max-binary-message-size</name>
@@ -242,16 +230,16 @@
           </value>
         </entry>
         <entry>
+          <key>connection-timeout</key>
+          <value>
+            <name>connection-timeout</name>
+          </value>
+        </entry>
+        <entry>
           <key>ssl-context-service</key>
           <value>
             <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
             <name>ssl-context-service</name>
-          </value>
-        </entry>
-        <entry>
-          <key>connection-timeout</key>
-          <value>
-            <name>connection-timeout</name>
           </value>
         </entry>
         <entry>
@@ -260,18 +248,22 @@
             <name>session-maintenance-interval</name>
           </value>
         </entry>
+        <entry>
+          <key>max-text-message-size</key>
+          <value>
+            <name>max-text-message-size</name>
+          </value>
+        </entry>
+        <entry>
+          <key>input-buffer-size</key>
+          <value>
+            <name>input-buffer-size</name>
+          </value>
+        </entry>
       </descriptors>
       <name>JettyWebSocketClient</name>
       <persistsState>false</persistsState>
       <properties>
-        <entry>
-          <key>input-buffer-size</key>
-          <value>4 kb</value>
-        </entry>
-        <entry>
-          <key>max-text-message-size</key>
-          <value>64 kb</value>
-        </entry>
         <entry>
           <key>max-binary-message-size</key>
           <value>64 kb</value>
@@ -281,15 +273,23 @@
           <value>ws://stream.meetup.com/2/rsvps</value>
         </entry>
         <entry>
-          <key>ssl-context-service</key>
-        </entry>
-        <entry>
           <key>connection-timeout</key>
           <value>3 sec</value>
         </entry>
         <entry>
+          <key>ssl-context-service</key>
+        </entry>
+        <entry>
           <key>session-maintenance-interval</key>
           <value>10 sec</value>
+        </entry>
+        <entry>
+          <key>max-text-message-size</key>
+          <value>64 kb</value>
+        </entry>
+        <entry>
+          <key>input-buffer-size</key>
+          <value>4 kb</value>
         </entry>
       </properties>
       <state>ENABLED</state>
@@ -626,15 +626,15 @@
                 </value>
               </entry>
               <entry>
-                <key>Stateful Variables Initial Value</key>
-                <value>
-                  <name>Stateful Variables Initial Value</name>
-                </value>
-              </entry>
-              <entry>
                 <key>mime.type</key>
                 <value>
                   <name>mime.type</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
+                <value>
+                  <name>Stateful Variables Initial Value</name>
                 </value>
               </entry>
             </descriptors>
@@ -650,11 +650,11 @@
                 <value>Do not store state</value>
               </entry>
               <entry>
-                <key>Stateful Variables Initial Value</key>
-              </entry>
-              <entry>
                 <key>mime.type</key>
                 <value>application/json</value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -688,15 +688,15 @@
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
-                <key>JsonPath Expression</key>
-                <value>
-                  <name>JsonPath Expression</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Null Value Representation</key>
                 <value>
                   <name>Null Value Representation</name>
+                </value>
+              </entry>
+              <entry>
+                <key>JsonPath Expression</key>
+                <value>
+                  <name>JsonPath Expression</name>
                 </value>
               </entry>
             </descriptors>
@@ -705,12 +705,12 @@
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>JsonPath Expression</key>
-                <value>$.group.group_topics</value>
-              </entry>
-              <entry>
                 <key>Null Value Representation</key>
                 <value>empty string</value>
+              </entry>
+              <entry>
+                <key>JsonPath Expression</key>
+                <value>$.group.group_topics</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -764,15 +764,15 @@
                 </value>
               </entry>
               <entry>
-                <key>Stateful Variables Initial Value</key>
-                <value>
-                  <name>Stateful Variables Initial Value</name>
-                </value>
-              </entry>
-              <entry>
                 <key>schema.name</key>
                 <value>
                   <name>schema.name</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
+                <value>
+                  <name>Stateful Variables Initial Value</name>
                 </value>
               </entry>
             </descriptors>
@@ -788,11 +788,11 @@
                 <value>Do not store state</value>
               </entry>
               <entry>
-                <key>Stateful Variables Initial Value</key>
-              </entry>
-              <entry>
                 <key>schema.name</key>
                 <value>meetup_rsvp_avro</value>
+              </entry>
+              <entry>
+                <key>Stateful Variables Initial Value</key>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -826,6 +826,12 @@
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
+                <key>jolt-spec</key>
+                <value>
+                  <name>jolt-spec</name>
+                </value>
+              </entry>
+              <entry>
                 <key>jolt-transform</key>
                 <value>
                   <name>jolt-transform</name>
@@ -844,12 +850,6 @@
                 </value>
               </entry>
               <entry>
-                <key>jolt-spec</key>
-                <value>
-                  <name>jolt-spec</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Transform Cache Size</key>
                 <value>
                   <name>Transform Cache Size</name>
@@ -861,16 +861,6 @@
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>jolt-transform</key>
-                <value>jolt-transform-modify-overwrite</value>
-              </entry>
-              <entry>
-                <key>jolt-custom-class</key>
-              </entry>
-              <entry>
-                <key>jolt-custom-modules</key>
-              </entry>
-              <entry>
                 <key>jolt-spec</key>
                 <value>{
       "venue": {
@@ -879,6 +869,16 @@
       }
     }
   </value>
+              </entry>
+              <entry>
+                <key>jolt-transform</key>
+                <value>jolt-transform-modify-overwrite</value>
+              </entry>
+              <entry>
+                <key>jolt-custom-class</key>
+              </entry>
+              <entry>
+                <key>jolt-custom-modules</key>
               </entry>
               <entry>
                 <key>Transform Cache Size</key>
@@ -926,21 +926,21 @@
                 </value>
               </entry>
               <entry>
+                <key>group.name</key>
+                <value>
+                  <name>group.name</name>
+                </value>
+              </entry>
+              <entry>
+                <key>venue.name</key>
+                <value>
+                  <name>venue.name</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Return Type</key>
                 <value>
                   <name>Return Type</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Path Not Found Behavior</key>
-                <value>
-                  <name>Path Not Found Behavior</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Null Value Representation</key>
-                <value>
-                  <name>Null Value Representation</name>
                 </value>
               </entry>
               <entry>
@@ -950,15 +950,9 @@
                 </value>
               </entry>
               <entry>
-                <key>event.url</key>
+                <key>Null Value Representation</key>
                 <value>
-                  <name>event.url</name>
-                </value>
-              </entry>
-              <entry>
-                <key>group.city</key>
-                <value>
-                  <name>group.city</name>
+                  <name>Null Value Representation</name>
                 </value>
               </entry>
               <entry>
@@ -968,21 +962,15 @@
                 </value>
               </entry>
               <entry>
-                <key>group.name</key>
+                <key>group.city</key>
                 <value>
-                  <name>group.name</name>
+                  <name>group.city</name>
                 </value>
               </entry>
               <entry>
-                <key>group.state</key>
+                <key>Path Not Found Behavior</key>
                 <value>
-                  <name>group.state</name>
-                </value>
-              </entry>
-              <entry>
-                <key>venue.lat</key>
-                <value>
-                  <name>venue.lat</name>
+                  <name>Path Not Found Behavior</name>
                 </value>
               </entry>
               <entry>
@@ -992,9 +980,21 @@
                 </value>
               </entry>
               <entry>
-                <key>venue.name</key>
+                <key>group.state</key>
                 <value>
-                  <name>venue.name</name>
+                  <name>group.state</name>
+                </value>
+              </entry>
+              <entry>
+                <key>event.url</key>
+                <value>
+                  <name>event.url</name>
+                </value>
+              </entry>
+              <entry>
+                <key>venue.lat</key>
+                <value>
+                  <name>venue.lat</name>
                 </value>
               </entry>
             </descriptors>
@@ -1007,52 +1007,52 @@
                 <value>flowfile-attribute</value>
               </entry>
               <entry>
+                <key>group.name</key>
+                <value>$.group.group_name</value>
+              </entry>
+              <entry>
+                <key>venue.name</key>
+                <value>$.venue.venue_name</value>
+              </entry>
+              <entry>
                 <key>Return Type</key>
                 <value>auto-detect</value>
-              </entry>
-              <entry>
-                <key>Path Not Found Behavior</key>
-                <value>ignore</value>
-              </entry>
-              <entry>
-                <key>Null Value Representation</key>
-                <value>empty string</value>
               </entry>
               <entry>
                 <key>event.name</key>
                 <value>$.event.event_name</value>
               </entry>
               <entry>
-                <key>event.url</key>
-                <value>$.event.event_url</value>
-              </entry>
-              <entry>
-                <key>group.city</key>
-                <value>$.group.group_city</value>
+                <key>Null Value Representation</key>
+                <value>empty string</value>
               </entry>
               <entry>
                 <key>group.country</key>
                 <value>$.group.group_country</value>
               </entry>
               <entry>
-                <key>group.name</key>
-                <value>$.group.group_name</value>
+                <key>group.city</key>
+                <value>$.group.group_city</value>
               </entry>
               <entry>
-                <key>group.state</key>
-                <value>$.group.group_state</value>
-              </entry>
-              <entry>
-                <key>venue.lat</key>
-                <value>$.venue.lat</value>
+                <key>Path Not Found Behavior</key>
+                <value>ignore</value>
               </entry>
               <entry>
                 <key>venue.lon</key>
                 <value>$.venue.lon</value>
               </entry>
               <entry>
-                <key>venue.name</key>
-                <value>$.venue.venue_name</value>
+                <key>group.state</key>
+                <value>$.group.group_state</value>
+              </entry>
+              <entry>
+                <key>event.url</key>
+                <value>$.event.event_url</value>
+              </entry>
+              <entry>
+                <key>venue.lat</key>
+                <value>$.venue.lat</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1171,6 +1171,12 @@
                 </value>
               </entry>
               <entry>
+                <key>Evaluation Mode</key>
+                <value>
+                  <name>Evaluation Mode</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Character Set</key>
                 <value>
                   <name>Character Set</name>
@@ -1186,12 +1192,6 @@
                 <key>Replacement Strategy</key>
                 <value>
                   <name>Replacement Strategy</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Evaluation Mode</key>
-                <value>
-                  <name>Evaluation Mode</name>
                 </value>
               </entry>
             </descriptors>
@@ -1223,6 +1223,10 @@
 }</value>
               </entry>
               <entry>
+                <key>Evaluation Mode</key>
+                <value>Entire text</value>
+              </entry>
+              <entry>
                 <key>Character Set</key>
                 <value>UTF-8</value>
               </entry>
@@ -1233,10 +1237,6 @@
               <entry>
                 <key>Replacement Strategy</key>
                 <value>Regex Replace</value>
-              </entry>
-              <entry>
-                <key>Evaluation Mode</key>
-                <value>Entire text</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1274,21 +1274,15 @@
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
+                <key>Log prefix</key>
+                <value>
+                  <name>Log prefix</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>
                   <name>Log Level</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Log Payload</key>
-                <value>
-                  <name>Log Payload</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Attributes to Log</key>
-                <value>
-                  <name>Attributes to Log</name>
                 </value>
               </entry>
               <entry>
@@ -1298,9 +1292,15 @@
                 </value>
               </entry>
               <entry>
-                <key>Log prefix</key>
+                <key>Attributes to Log</key>
                 <value>
-                  <name>Log prefix</name>
+                  <name>Attributes to Log</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Log Payload</key>
+                <value>
+                  <name>Log Payload</name>
                 </value>
               </entry>
             </descriptors>
@@ -1309,21 +1309,21 @@
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
+                <key>Log prefix</key>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>info</value>
-              </entry>
-              <entry>
-                <key>Log Payload</key>
-                <value>false</value>
-              </entry>
-              <entry>
-                <key>Attributes to Log</key>
               </entry>
               <entry>
                 <key>Attributes to Ignore</key>
               </entry>
               <entry>
-                <key>Log prefix</key>
+                <key>Attributes to Log</key>
+              </entry>
+              <entry>
+                <key>Log Payload</key>
+                <value>false</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1357,22 +1357,15 @@
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
-                <key>bootstrap.servers</key>
+                <key>compression.type</key>
                 <value>
-                  <name>bootstrap.servers</name>
+                  <name>compression.type</name>
                 </value>
               </entry>
               <entry>
-                <key>topic</key>
+                <key>ack.wait.time</key>
                 <value>
-                  <name>topic</name>
-                </value>
-              </entry>
-              <entry>
-                <key>record-reader</key>
-                <value>
-                  <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
-                  <name>record-reader</name>
+                  <name>ack.wait.time</name>
                 </value>
               </entry>
               <entry>
@@ -1383,15 +1376,15 @@
                 </value>
               </entry>
               <entry>
-                <key>security.protocol</key>
+                <key>acks</key>
                 <value>
-                  <name>security.protocol</name>
+                  <name>acks</name>
                 </value>
               </entry>
               <entry>
-                <key>sasl.kerberos.service.name</key>
+                <key>bootstrap.servers</key>
                 <value>
-                  <name>sasl.kerberos.service.name</name>
+                  <name>bootstrap.servers</name>
                 </value>
               </entry>
               <entry>
@@ -1401,9 +1394,15 @@
                 </value>
               </entry>
               <entry>
-                <key>sasl.kerberos.keytab</key>
+                <key>sasl.kerberos.service.name</key>
                 <value>
-                  <name>sasl.kerberos.keytab</name>
+                  <name>sasl.kerberos.service.name</name>
+                </value>
+              </entry>
+              <entry>
+                <key>security.protocol</key>
+                <value>
+                  <name>security.protocol</name>
                 </value>
               </entry>
               <entry>
@@ -1414,27 +1413,15 @@
                 </value>
               </entry>
               <entry>
-                <key>acks</key>
-                <value>
-                  <name>acks</name>
-                </value>
-              </entry>
-              <entry>
-                <key>message-key-field</key>
-                <value>
-                  <name>message-key-field</name>
-                </value>
-              </entry>
-              <entry>
                 <key>max.request.size</key>
                 <value>
                   <name>max.request.size</name>
                 </value>
               </entry>
               <entry>
-                <key>ack.wait.time</key>
+                <key>message-key-field</key>
                 <value>
-                  <name>ack.wait.time</name>
+                  <name>message-key-field</name>
                 </value>
               </entry>
               <entry>
@@ -1450,9 +1437,22 @@
                 </value>
               </entry>
               <entry>
-                <key>compression.type</key>
+                <key>sasl.kerberos.keytab</key>
                 <value>
-                  <name>compression.type</name>
+                  <name>sasl.kerberos.keytab</name>
+                </value>
+              </entry>
+              <entry>
+                <key>topic</key>
+                <value>
+                  <name>topic</name>
+                </value>
+              </entry>
+              <entry>
+                <key>record-reader</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
+                  <name>record-reader</name>
                 </value>
               </entry>
             </descriptors>
@@ -1461,51 +1461,44 @@
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>bootstrap.servers</key>
-                <value>sandbox.hortonworks.com:6667</value>
+                <key>compression.type</key>
+                <value>none</value>
               </entry>
               <entry>
-                <key>topic</key>
-                <value>meetup_rsvp_avro</value>
-              </entry>
-              <entry>
-                <key>record-reader</key>
-                <value>b7ac95c4-753f-3d61-0000-000000000000</value>
+                <key>ack.wait.time</key>
+                <value>5 secs</value>
               </entry>
               <entry>
                 <key>record-writer</key>
                 <value>864f726f-c33f-3837-0000-000000000000</value>
               </entry>
               <entry>
-                <key>security.protocol</key>
-                <value>PLAINTEXT</value>
+                <key>acks</key>
+                <value>0</value>
               </entry>
               <entry>
-                <key>sasl.kerberos.service.name</key>
+                <key>bootstrap.servers</key>
+                <value>sandbox.hortonworks.com:6667</value>
               </entry>
               <entry>
                 <key>sasl.kerberos.principal</key>
               </entry>
               <entry>
-                <key>sasl.kerberos.keytab</key>
+                <key>sasl.kerberos.service.name</key>
+              </entry>
+              <entry>
+                <key>security.protocol</key>
+                <value>PLAINTEXT</value>
               </entry>
               <entry>
                 <key>ssl.context.service</key>
-              </entry>
-              <entry>
-                <key>acks</key>
-                <value>0</value>
-              </entry>
-              <entry>
-                <key>message-key-field</key>
               </entry>
               <entry>
                 <key>max.request.size</key>
                 <value>1 MB</value>
               </entry>
               <entry>
-                <key>ack.wait.time</key>
-                <value>5 secs</value>
+                <key>message-key-field</key>
               </entry>
               <entry>
                 <key>max.block.ms</key>
@@ -1516,8 +1509,15 @@
                 <value>org.apache.kafka.clients.producer.internals.DefaultPartitioner</value>
               </entry>
               <entry>
-                <key>compression.type</key>
-                <value>none</value>
+                <key>sasl.kerberos.keytab</key>
+              </entry>
+              <entry>
+                <key>topic</key>
+                <value>meetup_rsvp_avro</value>
+              </entry>
+              <entry>
+                <key>record-reader</key>
+                <value>b7ac95c4-753f-3d61-0000-000000000000</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
