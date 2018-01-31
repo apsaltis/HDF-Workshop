@@ -337,7 +337,8 @@ bin/kafka-console-producer.sh --broker-list sandbox.hortonworks.com:6667 --topic
   - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka processor added in Step 1 as shown below:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka.png)
-  - Step 3: Configure the topic for the PublishKafka processor
+  - Step 3: Configure the topic and broker for the PublishKafka processor,
+  where topic is meetup_rsvp_raw and broker is sandbox.hortonworks.com:6667.
 
 
 3. Start the NiFi flow
