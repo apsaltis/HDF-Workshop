@@ -179,6 +179,10 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
 
 # Lab 3
 
+  ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/lab3.png)
+  A template for this flow can be found [here](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/templates/MiNiFi_Flow.xml)
+
+
 ## Getting started with MiNiFi ##
 
 In this lab, we will learn how to configure MiNiFi to send data to NiFi:
@@ -253,6 +257,14 @@ Now we should be ready to create our flow. To do this do the following:
   ```
 
 You should be able to now go to your NiFi flow and see data coming in from MiNiFi.
+
+You may tail the log of the MiNiFi application by
+   ```
+   tail -f /usr/hdf/current/minifi/minifi-0.2.0/logs/minifi-app.log
+   ```
+If you see error logs such as "the remote instance indicates that the port is not in a valid state",
+it is because the Input Port has not been started.
+Start the port and you will see messages being accumulated in its downstream queue.
 
 ------------------
 
