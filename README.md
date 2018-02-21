@@ -233,7 +233,7 @@ Now we should be ready to create our flow. To do this do the following:
 8. Now SCP the template you downloaded to the ````/temp```` directory on your EC2 instance.
 9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
 
-    * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi/minifi-toolkit-0.2.0)
+    * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi-toolkit-0.4.0)
     * Transform the template that we downloaded using the following command:
 
       ````bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
@@ -242,14 +242,14 @@ Now we should be ready to create our flow. To do this do the following:
 
       ````bin/config.sh transform /temp/MiNiFi_Flow.xml config.yml````
 
-10. Next copy the ````config.yml```` to the ````minifi-0.2.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
+10. Next copy the ````config.yml```` to the ````minifi-0.4.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
 
 11. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
 
   ```
-  cd /usr/hdf/current/minifi/minifi-0.2.0
-  bin/minifi.sh start
-
+  cd /usr/hdf/current/minifi-0.4.0
+  sudo bin/minifi.sh start
+  tail -f logs/minif-app.log
   ```
 
 You should be able to now go to your NiFi flow and see data coming in from MiNiFi.
