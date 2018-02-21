@@ -293,7 +293,7 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 
   - In the second shell window connect a producer:
 ````
-bin/kafka-console-producer.sh --broker-list sandbox.hortonworks.com:6667 --topic first-topic
+bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic first-topic
 ````
 
 
