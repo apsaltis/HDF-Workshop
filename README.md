@@ -263,10 +263,10 @@ In this lab we are going to explore creating, writing to and consuming Kafka top
 
 1. Creating a topic
   - Step 1: Open an SSH connection to your EC2 Node.
-  - Step 2: Naviagte to the Kafka directory (````/usr/hdp/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
+  - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
     ````
-    #cd /usr/hdp/current/kafka-broker/
+    #cd /usr/hdf/current/kafka-broker/
     ````
 
   - Step 3: Create a topic using the kafka-topics.sh script
@@ -313,10 +313,10 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 ## Integrating Kafka with NiFi
 1. Creating the topic
   - Step 1: Open an SSH connection to your EC2 Node.
-  - Step 2: Naviagte to the Kafka directory (````/usr/hdp/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
+  - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
     ````
-    #cd /usr/hdp/current/kafka-broker/
+    #cd /usr/hdf/current/kafka-broker/
     ````
 
   - Step 3: Create a topic using the kafka-topics.sh script
@@ -361,7 +361,7 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
   - Step 2: Naviagte to the Kafka directory (````/usr/hdf/current/kafka-broker````), this is where Kafka is installed, we will use the utilities located in the bin directory.
 
     ````
-    #cd /usr/hdp/current/kafka-broker/
+    #cd /usr/hdf/current/kafka-broker/
     ````
 
   - Step 3: Create a topic using the kafka-topics.sh script
@@ -466,7 +466,7 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
 
     ````
     cd /root/Data-Loader
-    nohup java -cp /root/Data-Loader/stream-simulator-jar-with-dependencies.jar  hortonworks.hdp.refapp.trucking.simulator.SimulationRegistrySerializerRunnerApp 20000 hortonworks.hdp.refapp.trucking.simulator.impl.domain.transport.Truck  hortonworks.hdp.refapp.trucking.simulator.impl.collectors.KafkaEventSerializedWithRegistryCollector 1 /root/Data-Loader/routes/midwest/ 10000 sandbox.hortonworks.com:6667 http://sandbox.hortonworks.com:7788/api/v1 ALL_STREAMS NONSECURE &
+    nohup java -cp /root/Data-Loader/stream-simulator-jar-with-dependencies.jar  hortonworks.hdp.refapp.trucking.simulator.SimulationRegistrySerializerRunnerApp 20000 hortonworks.hdp.refapp.trucking.simulator.impl.domain.transport.Truck  hortonworks.hdp.refapp.trucking.simulator.impl.collectors.KafkaEventSerializedWithRegistryCollector 1 /root/Data-Loader/routes/midwest/ 10000 demo.hortonworks.com:6667 http://demo.hortonworks.com:7788/api/v1 ALL_STREAMS NONSECURE &
     ````
   - Step 3: Now that the data is flowing, instantiate the 'IoT Trucking' NiFi template.
   - Step 4: Inspect the flow that is created and ensure there are no errors, if there are go ahead and correct those.
