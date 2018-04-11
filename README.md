@@ -236,11 +236,11 @@ Now we should be ready to create our flow. To do this do the following:
     * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi-toolkit-0.4.0)
     * Transform the template that we downloaded using the following command:
 
-      ````bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
+      ````sudo bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
 
       For example:
 
-      ````bin/config.sh transform /temp/MiNiFi_Flow.xml config.yml````
+      ````sudo bin/config.sh transform /temp/MiNiFi_Flow.xml config.yml````
 
 10. Next copy the ````config.yml```` to the ````minifi-0.4.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
 
