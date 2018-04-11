@@ -230,7 +230,7 @@ Now we should be ready to create our flow. To do this do the following:
 
 
 7. Now we need to download the template
-8. Now SCP the template you downloaded to the ````/temp```` directory on your EC2 instance.
+8. Now SCP the template you downloaded to the ````/temp```` directory on your EC2 instance. If you are using Windows you will need to download WinSCP (https://winscp.net/eng/download.php)
 9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
 
     * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi-toolkit-0.4.0)
