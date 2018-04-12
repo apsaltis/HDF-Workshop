@@ -224,7 +224,7 @@ Now we should be ready to create our flow. To do this do the following:
 5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
 
    * Create a template for MiNiFi
-   * Select the GenerateFlowFile and the NiFi Flow Remote Processor Group (these are the only things needed for MiMiFi)
+   * Select the GenerateFlowFile, the NiFi Flow Remote Processor Group, and the Connection between them (these are the only things needed for MiNiFi)
    * Select the "Create Template" button from the toolbar
    * Choose a name for your template
 
@@ -249,7 +249,7 @@ Now we should be ready to create our flow. To do this do the following:
   ```
   cd /usr/hdf/current/minifi-0.4.0
   sudo bin/minifi.sh start
-  tail -f logs/minif-app.log
+  tail -f logs/minifi-app.log
   ```
 
 You should be able to now go to your NiFi flow and see data coming in from MiNiFi.
