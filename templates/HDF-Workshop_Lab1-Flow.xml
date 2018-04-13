@@ -848,7 +848,7 @@
         <properties>
           <entry>
             <key>Directory</key>
-            <value>/temp/rsvp-data</value>
+            <value>/tmp/rsvp-data</value>
           </entry>
           <entry>
             <key>Conflict Resolution Strategy</key>
