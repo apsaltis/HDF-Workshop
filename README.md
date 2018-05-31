@@ -116,7 +116,8 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
   A template for this flow can be found [here](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/templates/HDF-Workshop_Lab1-Flow.xml)
 
 
-  - Step 1: Add a ConnectWebSocket processor to the cavas
+  - Step 1: Add a ConnectWebSocket processor to the cavas 
+      - In case you are using a downloaded template, the ControllerServerice will be prepopulated. You will need to enable the ControllerService. Double-click the processor and follow the arrow next to the JettyWebSocketClient
       - Set WebSocket Client ID to your favorite number.
   - Step 2: Add an Update Attribute procesor
     - Configure it to have a custom property called ``` mime.type ``` with the value of ``` application/json ```
