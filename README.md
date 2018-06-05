@@ -350,7 +350,7 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka.png)
   - Step 3: Configure the topic and broker for the PublishKafka processor,
-  where topic is meetup_rsvp_raw and broker is sandbox.hortonworks.com:6667.
+  where topic is meetup_rsvp_raw and broker is demo.hortonworks.com:6667.
 
 
 3. Start the NiFi flow
