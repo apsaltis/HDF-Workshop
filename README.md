@@ -23,9 +23,10 @@
   - Creating the Kafka topic
   - Adding the Meetup Avro Schema
   - Sending Avro data to Kafka
-- [Lab 7](#lab-7) - Tying it all together with SAM
+
+<!-- - [Lab 7](#lab-7) - Tying it all together with SAM
   - Creating the Streaming Application
-  - Watching the dashboard
+  - Watching the dashboard -->
 
 
 ---------------
@@ -41,39 +42,13 @@ Credentials will be provided for these services by the instructor:
 
 ## Use your Cluster
 
-### To connect using Putty from Windows laptop
+#### Connecting using WebConsole
 
-- Right click to download [this ppk key](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/hdf-workshop.ppk) > Save link as > save to Downloads folder
-- Use putty to connect to your node using the ppk key:
-  - Connection > SSH > Auth > Private key for authentication > Browse... > Select hdf-workshop.ppk
-![Image](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/putty.png)
+- To make accessing your EC2 instance easier we will be using WebConsole for SSH access. To login into your cluster using WebConlsole do the following:
 
-- Create a new seession called `hdf-workshop`
-   - For the Host Name use: centos@IP_ADDRESS_OF_EC2_NODE
-   - Click "Save" on the session page before logging in
-
-![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/putty-session.png)
-
-
-### To connect from Linux/MacOSX laptop
-
-- SSH into your EC2 node using below steps:
-- Right click to download [this pem key](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/hdf-workshop.pem)  > Save link as > save to Downloads folder
-- Copy pem key to ~/.ssh dir and correct permissions
-    ```
-    cp ~/Downloads/hdf-workshop.pem ~/.ssh/
-    chmod 400 ~/.ssh/hdf-workshop.pem
-    ```
- - Login to the ec2 node of the you have been assigned by replacing IP_ADDRESS_OF_EC2_NODE below with EC2 node IP Address (your instructor will provide this)
-    ```
-     ssh -i  ~/.ssh/hdf-workshop.pem centos@IP_ADDRESS_OF_EC2_NODE
-
-    ```
-
-  - To change user to root you can:
-    ```
-    sudo su -
-    ```
+  - Open a web browser and go to http://{YOUR_EC2_IP_ADDRESS}/webconsole.php
+  - Login with the username: **webconsole** and the password **admin**
+  - You are now ssh'd onto your EC2 instance and should be able to navigate via the command line.
 
 
 #### Login to Ambari
@@ -116,7 +91,7 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
   A template for this flow can be found [here](https://raw.githubusercontent.com/apsaltis/HDF-Workshop/master/templates/HDF-Workshop_Lab1-Flow.xml)
 
 
-  - Step 1: Add a ConnectWebSocket processor to the cavas 
+  - Step 1: Add a ConnectWebSocket processor to the cavas
       - In case you are using a downloaded template, the ControllerService will be prepopulated. You will need to enable the ControllerService. Double-click the processor and follow the arrow next to the JettyWebSocketClient
       - Set WebSocket Client ID to your favorite number.
   - Step 2: Add an UpdateAttribute procesor
@@ -227,44 +202,64 @@ Now we should be ready to create our flow. To do this do the following:
 
 5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
 
-   * Create a template for MiNiFi
    * Select the GenerateFlowFile, the NiFi Flow Remote Processor Group, and the Connection between them (these are the only things needed for MiNiFi)
    * Select the "Create Template" button from the toolbar
-   * Choose a name for your template
+   * Choose a name for your template, the name must end with ***.v{x}*** where ***x*** is a version number. The first version should be 1.
 
+6. Now we are ready to start and test the C2C server. To do this do perform the following steps:
 
-7. Now we need to download the template
-8. Now SCP the template you downloaded to the ````/tmp```` directory on your EC2 instance. If you are using Windows you will need to download WinSCP (https://winscp.net/eng/download.php)
-9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
+    - Open a browser table to the WebConsole and log in.
+    - Navigate to ````/usr/hdf/current/minifi-c2-0.5.0-SNAPSHOT````
+    - Execute the following command: ````bin/c2.sh````
+    - Now open another browser tab and go to: ````http://<EC2_NODE>:10080/c2/config?class=<name-of-template>````
+    - You should see a YAML representation of your template in the browser
 
-    * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi-toolkit-0.4.0)
-    * Transform the template that we downloaded using the following command:
+7. Now we are ready to configure and start minifi. To do this perform the following steps:
 
-      ````sudo bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
+    - Open a browser table to the WebConsole and log in
+    - Navigate to ````/usr/hdf/current/minifi-0.4.0````
+    - Open ````conf/bootstrap.conf```` in an editor such as ````vim conf/bootstrap.conf````
+    - Uncomment and adjust the following lines:
 
-      For example:
+      ````
+      #nifi.minifi.notifier.ingestors=org.apache.nifi.minifi.bootstrap.configuration.ingestors.PullHttpChangeIngestor
 
-      ````sudo bin/config.sh transform /temp/MiNiFi_Flow.xml config.yml````
+      # Hostname on which to pull configurations from
+      #nifi.minifi.notifier.ingestors.pull.http.hostname=localhost <-- THIS SHOULD BE CHANGED TO demo.hortworks.com
 
-10. Next copy the ````config.yml```` to the ````minifi-0.4.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
+      # Port on which to pull configurations from
+      #nifi.minifi.notifier.ingestors.pull.http.port=4567 <-- THIS SHOULD BE CHANGED TO BE THE SAME PORT THAT THE C2 SERVER IS LISTENING ON
 
-11. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
+      # Path to pull configurations from
+      #nifi.minifi.notifier.ingestors.pull.http.path=/c2/config
+
+      # Query string to pull configurations with
+      #nifi.minifi.notifier.ingestors.pull.http.query=class=raspi3 <-- CHANGE THIS TO MATCH THE NAME OF THE TEMPLATE YOU CREATED ABOVE IN STEP 5
+
+      # Period on which to pull configurations from, defaults to 5 minutes if commented out
+      #nifi.minifi.notifier.ingestors.pull.http.period.ms=300000
+      ````
+
+8. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
 
   ```
-  cd /usr/hdf/current/minifi-0.4.0
-  sudo bin/minifi.sh start
+  bin/minifi.sh start
   tail -f logs/minifi-app.log
   ```
 
-You should be able to now go to your NiFi flow and see data coming in from MiNiFi.
+After starting MiNiFi you should be able to verify the following:
+  1. Go to the browser tab where you have minifi-c2 running you should see a log line indicating a request for the configuration
+  2. Go to your NiFi flow and see data coming in from MiNiFi.
 
-You may tail the log of the MiNiFi application by
+  IF you do not see data flowing to NiFi. You can check for errors by tailing the MiNiFi log by using this command:
    ```
    tail -f /usr/hdf/current/minifi/minifi-0.2.0/logs/minifi-app.log
    ```
-If you see error logs such as "the remote instance indicates that the port is not in a valid state",
-it is because the Input Port has not been started.
-Start the port and you will see messages being accumulated in its downstream queue.
+   If you see error logs such as "the remote instance indicates that the port is not in a valid state",
+   it is because the Input Port has not been started.
+   Start the port and you will see messages being accumulated in its downstream queue.
+
+  3. Now prove to yourself that the C2 server and MiNiFi are working. You can do this by making changes to the MiNiFi part of the flow and again saving it as a template. Make sure to use an incremented version number. After a short period to time you should see in the C2 log a request for the config and you should see in the MiNiFi log that it was picked up, a warm redeploy occurs and the updated config is running.
 
 ------------------
 
@@ -345,11 +340,11 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
     ````
 
 2. Integrating NiFi
-  - Step 1: Add a PublishKafka_0_10 processor to the canvas.
-  - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka processor added in Step 1 as shown below:
+  - Step 1: Add a PublishKafka_1_0 processor to the canvas.
+  - Step 2: Add a routing for the success relationship of the ReplaceText processor to the PublishKafka_1_0 processor added in Step 1 as shown below:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka.png)
-  - Step 3: Configure the topic and broker for the PublishKafka processor,
+  - Step 3: Configure the topic and broker for the PublishKafka_1_0 processor,
   where topic is meetup_rsvp_raw and broker is demo.hortonworks.com:6667.
 
 
@@ -407,7 +402,7 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
         Once the schema information fields have been filled and schema uploaded, click **Save**.
 
 3. We are now ready to integrate the schema with NiFi
-  - Step 0: Remove the PutFile and PublishKafka_0_10 processors from the canvas, we will not need them for this section.
+  - Step 0: Remove the PutFile and PublishKafka_1_0 processors from the canvas, we will not need them for this section.
   - Step 1: Add a UpdateAttribute processor to the canvas.
   - Step 2: Add a routing for the success relationship of the ReplaceText processor to the UpdateAttrbute processor added in Step 1.
   - Step 3: Configure the UpdateAttribute processor as shown below:
@@ -432,9 +427,9 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
   ``
   - Step 7: Add a LogAttribute processor to the canvas.
   - Step 8: Add a routing for the failure relationship of the JoltTransformJSON processor to the LogAttribute processor added in Step 7.
-  - Step 9: Add a PublishKafkaRecord_0_10 to the canvas.
-  - Step 10: Add a routing for the success relationship of the JoltTransformJSON processor to the PublishKafka processor added in Step 9.
-  - Step 11: Configure the PublishKafkaRecord processor to look like the following:
+  - Step 9: Add a PublishKafkaRecord_1_0 to the canvas.
+  - Step 10: Add a routing for the success relationship of the JoltTransformJSON processor to the PublishKafkaRecord_1_0 processor added in Step 9.
+  - Step 11: Configure the PublishKafkaRecord_1_0 processor to look like the following:
 
     ![Image](https://github.com/apsaltis/HDF-Workshop/raw/master/publishkafka_record_configuration.png)
 
@@ -467,7 +462,10 @@ bin/kafka-console-producer.sh --broker-list demo.hortonworks.com:6667 --topic fi
 5. Messages should now appear in the consumer window.
 
 
+<!--
+
 ------------------
+
 
 # Lab 7
 
@@ -521,3 +519,4 @@ For this lab we are going to break from the Meetup RSVP data and use a fictious 
   **NOTE: If you are prompted for a password use admin/admin**
 
     Spend some time exploring the dashboard and the datasources.
+-->
