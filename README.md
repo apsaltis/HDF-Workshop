@@ -236,7 +236,7 @@ Now we should be ready to create our flow. To do this do the following:
 
 6. Now we are ready to start and test the C2C server. To do this do perform the following steps:
 
-    - Open a browser table to the WebConsole and log in.
+    - Open a ssh connection to your EC2 instance
     - Navigate to ````/usr/hdf/current/minifi-c2-0.5.0-SNAPSHOT````
     - Execute the following command: ````bin/c2.sh````
     - Now open another browser tab and go to: ````http://<EC2_NODE>:10080/c2/config?class=<name-of-template>````
@@ -244,7 +244,7 @@ Now we should be ready to create our flow. To do this do the following:
 
 7. Now we are ready to configure and start minifi. To do this perform the following steps:
 
-    - Open a browser table to the WebConsole and log in
+    - Open a ssh connection to your EC2 instance
     - Navigate to ````/usr/hdf/current/minifi-0.4.0````
     - Open ````conf/bootstrap.conf```` in an editor such as ````vim conf/bootstrap.conf````
     - Uncomment and adjust the following lines:
