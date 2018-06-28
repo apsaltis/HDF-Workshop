@@ -230,64 +230,44 @@ Now we should be ready to create our flow. To do this do the following:
 
 5. The next step is to generate the flow we need for MiNiFi. To do this do the following steps:
 
+   * Create a template for MiNiFi
    * Select the GenerateFlowFile, the NiFi Flow Remote Processor Group, and the Connection between them (these are the only things needed for MiNiFi)
    * Select the "Create Template" button from the toolbar
-   * Choose a name for your template, the name must end with ***.v{x}*** where ***x*** is a version number. The first version should be 1.
+   * Choose a name for your template
 
-6. Now we are ready to start and test the C2C server. To do this do perform the following steps:
 
-    - Open a ssh connection to your EC2 instance
-    - Navigate to ````/usr/hdf/current/minifi-c2-0.5.0-SNAPSHOT````
-    - Execute the following command: ````bin/c2.sh````
-    - Now open another browser tab and go to: ````http://<EC2_NODE>:10080/c2/config?class=<name-of-template>````
-    - You should see a YAML representation of your template in the browser
+7. Now we need to download the template
+8. Now SCP the template you downloaded to the ````/tmp```` directory on your EC2 instance. If you are using Windows you will need to download WinSCP (https://winscp.net/eng/download.php)
+9.  We are now ready to setup MiNiFi. However before doing that we need to convert the template to YAML format which MiNiFi uses. To do this we need to do the following:
 
-7. Now we are ready to configure and start minifi. To do this perform the following steps:
+    * Navigate to the minifi-toolkit directory (/usr/hdf/current/minifi-toolkit-0.4.0)
+    * Transform the template that we downloaded using the following command:
 
-    - Open a ssh connection to your EC2 instance
-    - Navigate to ````/usr/hdf/current/minifi-0.4.0````
-    - Open ````conf/bootstrap.conf```` in an editor such as ````vim conf/bootstrap.conf````
-    - Uncomment and adjust the following lines:
+      ````sudo bin/config.sh transform <INPUT_TEMPLATE> <OUTPUT_FILE>````
 
-      ````
-      #nifi.minifi.notifier.ingestors=org.apache.nifi.minifi.bootstrap.configuration.ingestors.PullHttpChangeIngestor
+      For example:
 
-      # Hostname on which to pull configurations from
-      #nifi.minifi.notifier.ingestors.pull.http.hostname=localhost <-- THIS SHOULD BE CHANGED TO demo.hortworks.com
+      ````sudo bin/config.sh transform /temp/MiNiFi_Flow.xml config.yml````
 
-      # Port on which to pull configurations from
-      #nifi.minifi.notifier.ingestors.pull.http.port=4567 <-- THIS SHOULD BE CHANGED TO BE THE SAME PORT THAT THE C2 SERVER IS LISTENING ON
+10. Next copy the ````config.yml```` to the ````minifi-0.4.0/conf```` directory. That is the file that MiNiFi uses to generate the nifi.properties file and the flow.xml.gz for MiNiFi.
 
-      # Path to pull configurations from
-      #nifi.minifi.notifier.ingestors.pull.http.path=/c2/config
-
-      # Query string to pull configurations with
-      #nifi.minifi.notifier.ingestors.pull.http.query=class=raspi3 <-- CHANGE THIS TO MATCH THE NAME OF THE TEMPLATE YOU CREATED ABOVE IN STEP 5
-
-      # Period on which to pull configurations from, defaults to 5 minutes if commented out
-      #nifi.minifi.notifier.ingestors.pull.http.period.ms=300000
-      ````
-
-8. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
+11. That is it, we are now ready to start MiNiFi. To start MiNiFi from a command prompt execute the following:
 
   ```
-  bin/minifi.sh start
+  cd /usr/hdf/current/minifi-0.4.0
+  sudo bin/minifi.sh start
   tail -f logs/minifi-app.log
   ```
 
-After starting MiNiFi you should be able to verify the following:
-  1. Go to the browser tab where you have minifi-c2 running you should see a log line indicating a request for the configuration
-  2. Go to your NiFi flow and see data coming in from MiNiFi.
+You should be able to now go to your NiFi flow and see data coming in from MiNiFi.
 
-  IF you do not see data flowing to NiFi. You can check for errors by tailing the MiNiFi log by using this command:
+You may tail the log of the MiNiFi application by
    ```
    tail -f /usr/hdf/current/minifi/minifi-0.2.0/logs/minifi-app.log
    ```
-   If you see error logs such as "the remote instance indicates that the port is not in a valid state",
-   it is because the Input Port has not been started.
-   Start the port and you will see messages being accumulated in its downstream queue.
-
-  3. Now prove to yourself that the C2 server and MiNiFi are working. You can do this by making changes to the MiNiFi part of the flow and again saving it as a template. Make sure to use an incremented version number. After a short period to time you should see in the C2 log a request for the config and you should see in the MiNiFi log that it was picked up, a warm redeploy occurs and the updated config is running.
+If you see error logs such as "the remote instance indicates that the port is not in a valid state",
+it is because the Input Port has not been started.
+Start the port and you will see messages being accumulated in its downstream queue.
 
 ------------------
 
