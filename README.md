@@ -81,7 +81,7 @@ NOTE: The following instructions are for using Putty. You can also use other pop
 
 #### Login to Ambari
 
-- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with **admin/admin**
+- Login to Ambari web UI by opening http://{YOUR_IP}:8080 and log in with **admin/StrongPassword**
 
 - You will see a list of Hadoop components running on your node on the left side of the page
   - They should all show green (ie started) status. If not, start them by Ambari via 'Service Actions' menu for that service
