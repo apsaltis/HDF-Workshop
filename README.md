@@ -137,36 +137,36 @@ To get started we need to consume the data from the Meetup RSVP stream, extract 
 
     group.state   $.group.group_state
 
-    group.country	$.group.group_country
+    group.country $.group.group_country
 
-    group.name		$.group.group_name
+    group.name    $.group.group_name
 
-    venue.lat		  $.venue.lat
+    venue.lat     $.venue.lat
 
     venue.lon     $.venue.lon
 
-    venue.name		$.venue.venue_name
+    venue.name    $.venue.venue_name
     ```
   - Step 4: Add a SplitJson processor and configure the JsonPath Expression to be ```$.group.group_topics ```
   - Step 5: Add a ReplaceText processor and configure the Search Value to be ```([{])([\S\s]+)([}])``` and the Replacement Value to be
     ```
-         {
-        "event_name": "${event.name}",
-        "event_url": "${event.url}",
-        "venue" : {
-        	"lat": "${venue.lat}",
-        	"lon": "${venue.lon}",
-        	"name": "${venue.name}"
-        },
-        "group" : {
-          "group_city" : "${group.city}",
-          "group_country" : "${group.country}",
-          "group_name" : "${group.name}",
-          "group_state" : "${group.state}",
-          $2
-         }
+    {
+      "event_name": "${event.name}",
+      "event_url": "${event.url}",
+      "venue" : {
+      	"lat": "${venue.lat}",
+      	"lon": "${venue.lon}",
+      	"name": "${venue.name}"
+      },
+      "group": {
+        "group_city": "${group.city}",
+        "group_country": "${group.country}",
+        "group_name": "${group.name}",
+        "group_state": "${group.state}",
+        $2
       }
-      ```
+    }
+    ```
   - Step 6: Add a PutFile processor to the canvas and configure it to write the data out to ```/tmp/rsvp-data```
 
 ##### Questions to Answer
@@ -201,14 +201,12 @@ In this lab, we will learn how to configure MiNiFi to send data to NiFi:
 **NOTE:** Before starting NiFi we need to enable Site-to-Site communication. To do that we will use Ambari to update the required configuration. In Ambari the below property values can be found at ````http://<EC2_NODE>:8080/#/main/services/NIFI/configs```` .
 
 * Change:
-  ````
-			nifi.remote.input.socket.port=
-
-  ````
+  ```
+    nifi.remote.input.socket.port=
+  ```
   To
   ```
-   		nifi.remote.input.socket.port=10000
-
+    nifi.remote.input.socket.port=10000
   ```
 * Restart NiFi via Ambari
 
@@ -263,7 +261,7 @@ You should be able to now go to your NiFi flow and see data coming in from MiNiF
 
 You may tail the log of the MiNiFi application by
    ```
-   tail -f /usr/hdf/current/minifi/minifi-0.2.0/logs/minifi-app.log
+   tail -f /usr/hdf/current/minifi/minifi-0.4.0/logs/minifi-app.log
    ```
 If you see error logs such as "the remote instance indicates that the port is not in a valid state",
 it is because the Input Port has not been started.
